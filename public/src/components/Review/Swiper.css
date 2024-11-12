@@ -1,0 +1,23 @@
+.swiper-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: flex;
+  transition-property: transform;
+  box-sizing: content-box;
+}
+
+.swiper-slide {
+  /* width: 380px !important; */
+  height: 420px !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 40px;
+  border: 1px solid #f0f0f0;
+  background-color: aliceblue;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.07);
+  border-radius: 25px;
+}
