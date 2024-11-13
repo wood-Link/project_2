@@ -1,0 +1,93 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* border: 1px solid black; */
+}
+
+.ShareLinkBoxMom {
+  background-color: #f2edea;
+}
+
+.ShareLinkBox {
+  width: 100%;
+  border: 1px solid black;
+  max-width: 1420px;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 50px;
+  color: #8b634b;
+  font-weight: bold;
+  padding: 80px 0 20px 0;
+}
+
+.subTitle {
+  font-size: 20px;
+}
+
+.tab_item {
+  width: 300px; /* 고정 너비 */
+  height: 200px; /* 고정 높이 */
+  object-fit: cover;
+  display: none;
+}
+
+/* 탭 메뉴 스타일 */
+
+.buttons {
+  text-align: right;
+}
+
+.aside input {
+  display: none;
+}
+
+input:nth-of-type(1):checked ~ section:nth-of-type(1) {
+  display: block;
+}
+
+input:nth-of-type(2):checked ~ section:nth-of-type(2) {
+  display: block;
+}
+
+input:nth-of-type(3):checked ~ section:nth-of-type(3) {
+  display: block;
+}
+
+input:nth-of-type(4):checked ~ section:nth-of-type(4) {
+  display: block;
+}
+
+input:nth-of-type(5):checked ~ section:nth-of-type(5) {
+  display: block;
+}
+
+label {
+  border-right: 1px black solid;
+  padding: 0px 10px;
+}
+
+label:nth-of-type(5) {
+  border: none;
+}
+
+/* 테블릿 반응 */
+@media (max-width: 768px) {
+  .title {
+    font-size: 40px;
+  }
+
+  .subTitle {
+    font-size: 20px;
+  }
+}
+
+/* 모바일 버전 */
+@media (max-width: 436px) {
+  .subTitle {
+    font-size: 15px;
+  }
+}

@@ -13,8 +13,12 @@ function Teg() {
   }, []);
 
   return (
+
     <>
-      <section className="container">
+    <section className="tegBox">
+      <div className="container">
+        {/*  PC 버전: 첫 번째 행 (4개 아이템) */}
+
         <div className="row pc">
           <div className={`item ${activeIndex === 0 ? "blink" : ""}`}>
             <p>무료나눔</p>
@@ -79,8 +83,12 @@ function Teg() {
             자립청년
           </div>
         </div>
-      </section>
-    </>
+
+
+      </div>
+    </section>
+      </>
+
   );
 }
 
