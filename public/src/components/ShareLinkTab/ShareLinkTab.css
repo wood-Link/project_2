@@ -1,0 +1,196 @@
+.ShareLinkTabBoxMom {
+  background-color: #f2edea;
+  padding-bottom: 80px;
+}
+
+.ShareLinkTabBox {
+  width: 100%;
+  max-width: 1420px;
+  margin: 0 auto;
+  /* padding: 80px; */
+}
+
+.shareApply {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tabTitle {
+  color: #8b634b;
+  font-weight: bold;
+  font-size: 50px;
+  text-align: center;
+  padding: 80px 0 80px 0;
+}
+
+.test {
+  width: 100%;
+}
+
+/* 신청란 이미지 파트 */
+
+.shareTab {
+  border: 1px solid black;
+  max-width: 50%;
+  min-width: 30%;
+  width: 50%;
+  height: 730px;
+  border-radius: 10px;
+}
+
+.shareTabImg {
+  height: 570px;
+}
+
+.shareTabExplain {
+  height: 160px;
+  background-color: #445d9d;
+  color: white;
+  padding: 3%;
+  border-radius: 0px 0px 10px 10px;
+}
+
+.textTitle {
+  font-size: 25px;
+}
+
+li {
+  font-size: 20px;
+}
+
+/* 신청란 신청 파트 */
+
+.shareTabApply {
+  width: 40%;
+  height: 730px;
+  padding: 2%;
+  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.1);
+  background-color: white;
+  border-radius: 10px;
+}
+
+.inputName {
+  margin-bottom: 40px;
+}
+
+.inputTitle {
+  font-size: 30px;
+  color: #445d9d;
+  padding-right: 10px;
+}
+
+.agree {
+  display: flex;
+  justify-content: space-between;
+}
+
+.inputText {
+  margin-top: 20px;
+  width: 100%;
+  height: 50px;
+  border-width: 0;
+  border-width: 0 0 1px;
+  border-color: #a4a4a4;
+  font-size: 20px;
+  padding-left: 10px;
+}
+
+.postTest {
+  display: flex;
+}
+
+.compum {
+  background-color: #5173c7;
+  color: white;
+  border: none;
+  width: 160px;
+  height: 60px;
+  font-size: 30px;
+  border-radius: 10px;
+}
+
+.compum:hover {
+  background-color: #445d9d;
+}
+
+/* 테블릿 반응 */
+@media (max-width: 768px) {
+  .tabTitle {
+    font-size: 40px;
+  }
+
+  .ShareLinkTabBox {
+    padding: 5%;
+  }
+
+  .shareApply {
+    flex-direction: column; /* 세로 방향으로 배치 */
+    align-items: center; /* 중앙 정렬 */
+    justify-content: center; /* 세로로 중앙 정렬 */
+  }
+
+  .shareTab {
+    width: 100%; /* 100%로 너비 확장 */
+    max-width: 768px;
+    min-width: 0;
+    margin-bottom: 20px; /* 세로로 쌓일 때 간격 추가 */
+    height: auto; /* 높이는 내용에 맞게 자동 조정 */
+  }
+
+  .shareTabApply {
+    width: 100%; /* 100%로 너비 확장 */
+    max-width: 768px;
+    height: auto; /* 높이를 자동으로 설정 */
+  }
+
+  .compum {
+    height: 50px;
+    width: 120px;
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+}
+
+/* 모바일 버전 */
+@media (max-width: 436px) {
+  .shareTab {
+    height: 450px;
+  }
+
+  .shareTabImg {
+    height: 340px;
+  }
+
+  .shareTabExplain {
+    height: 110px;
+  }
+
+  .textTitle {
+    font-size: 18px;
+  }
+
+  li {
+    font-size: 15px;
+  }
+
+  .shareTabApply {
+    height: auto;
+  }
+
+  .inputTitle {
+    font-size: 18px;
+  }
+
+  .inputText {
+    font-size: 15px;
+    margin-top: 0px;
+  }
+
+  .inputName {
+    margin-bottom: 20px;
+  }
+
+  .compum {
+    margin-bottom: 10px;
+  }
+}
