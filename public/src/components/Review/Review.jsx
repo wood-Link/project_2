@@ -10,56 +10,38 @@ import { Autoplay, Pagination } from "swiper/modules";
 import Style from "./Review.module.css";
 import "./Swiper.css";
 import Card from "./Card";
+import thum from "../../assets/shot.png";
 
 function Review() {
   return (
     <>
       <section className={Style.review_section}>
         <div className={Style.title}>후기</div>
-        <div className={Style.swiper_body}>
+        <div className={Style.swiper_Warp}>
           <Swiper
             spaceBetween={45}
             slidesPerView={3}
-            // watchOverflow={true}
             loop={true}
-            // autoplay={{
-            //   delay: 1000,
-            //   disableOnInteraction: false,
-            // }}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+            }}
             pagination={{
               clickable: true,
             }}
-            modules={[Autoplay, Pagination]}
-            onSlideChange={() => console.log("slide change")}
-            onSwiper={(swiper) => console.log(swiper)}
-            className="mySwiper"
+            modules={[Autoplay]}
           >
             <SwiperSlide>
-              <Card />
+              <Card img={thum} title={"타이틀"} name={"이름"} review={"리뷰"} />
             </SwiperSlide>
             <SwiperSlide>
-              <Card />
+              <Card img={thum} title={"타이틀"} name={"이름"} review={"리뷰"} />
             </SwiperSlide>
             <SwiperSlide>
-              <Card />
+              <Card img={thum} title={"타이틀"} name={"이름"} review={"리뷰"} />
             </SwiperSlide>
             <SwiperSlide>
-              <Card />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Card />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Card />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Card />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Card />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Card />
+              <Card img={thum} title={"타이틀"} name={"이름"} review={"리뷰"} />
             </SwiperSlide>
           </Swiper>
         </div>

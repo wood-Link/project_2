@@ -6,25 +6,13 @@ import Review from "./components/Review/Review";
 
 import Teg from "./components/Teg/Teg";
 
-
 function App() {
-  function Main() {
-    return (
-      <>
-        <main></main>
-      </>
-    );
-  }
   return (
     <>
       <Header />
- <Teg />
+      <Teg />
 
       <Review />
-
-
-     
-
 
       <Footer />
     </>

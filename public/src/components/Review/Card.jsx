@@ -1,13 +1,14 @@
-import Style from "./Card.module.css";
-
-function Card() {
+import "./Card.css";
+function Card({ img, title, name, review }) {
   return (
     <>
-      <div>
-        <img src="" alt="가구이미지" />
-        <div>공방 이름</div>
-        <div>이름</div>
-        <div>후기</div>
+      <div className="review_card">
+        <div className="review_card_inner">
+          <img src={img} alt="가구이미지" className="review_card_img" />
+        </div>
+        <div className="review_card_title">{title}</div>
+        <div className="review_card_name">{name}</div>
+        <div className="review_card_review">{review}</div>
       </div>
     </>
   );
