@@ -2,7 +2,11 @@ import "./Teg.css";
 
 function Teg() {
   return (
+
     <section className="tegBox">
+
+      <section></section>
+
       <div className="container">
         {/*  PC 버전: 첫 번째 행 (4개 아이템) */}
         <div className="row pc">
