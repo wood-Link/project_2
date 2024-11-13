@@ -1,19 +1,18 @@
 import "./App.css";
 import Header from "./components/header/Header";
-import Footer from "./components/Footer/Footer";
-
-import Review from "./components/Review/Review";
 
 import Teg from "./components/Teg/Teg";
+import Review from "./components/Review/Review";
+import Question from "./components/Question/Question";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
     <>
       <Header />
       <Teg />
-
       <Review />
-
+      <Question />
       <Footer />
     </>
   );

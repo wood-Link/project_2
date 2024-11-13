@@ -38,10 +38,78 @@
   align-items: center;
 }
 
-.item:hover {
+/* .item:hover {
   background-color: #445d9d;
   color: white;
   transform: scale(1.1);
+} */
+/* 태그 버튼 점멸 */
+.blink {
+  background-color: #445d9d;
+  color: white;
+  transition: background-color 1s ease;
+}
+/* 태그 버튼 움직이는 애니메이션 */
+
+.item:nth-child(1) {
+  -webkit-animation: upDown 1.4s ease-in-out infinite;
+  animation: upDown 1.4s ease-in-out infinite;
+}
+.item:nth-child(2) {
+  -webkit-animation: upDown2 2.1s ease-in-out infinite;
+  animation: upDown2 2.1s ease-in-out infinite;
+}
+.item:nth-child(3) {
+  -webkit-animation: upDown3 1.9s ease-in-out infinite;
+  animation: upDown3 1.9s ease-in-out infinite;
+}
+.item:nth-child(4) {
+  -webkit-animation: upDown2 1.7s ease-in-out infinite;
+  animation: upDown2 1.7s ease-in-out infinite;
+}
+.item:nth-child(5) {
+  -webkit-animation: upDown3 2s ease-in-out infinite;
+  animation: upDown3 2s ease-in-out infinite;
+}
+.item:nth-child(6) {
+  -webkit-animation: upDown 2.2s ease-in-out infinite;
+  animation: upDown 2.2s ease-in-out infinite;
+}
+
+@keyframes upDown {
+  0% {
+    transform: translateY(-5px);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+  100% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes upDown2 {
+  0% {
+    transform: translateY(4px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+  100% {
+    transform: translateY(4px);
+  }
+}
+
+@keyframes upDown3 {
+  0% {
+    transform: translateY(-5px);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(-5px);
+  }
 }
 
 /* PC 버전 (1024px 이상): 4/4 배치 */
