@@ -40,11 +40,6 @@
   align-items: center;
 }
 
-/* .item:hover {
-  background-color: #445d9d;
-  color: white;
-  transform: scale(1.1);
-} */
 /* 태그 버튼 점멸 */
 .blink {
   background-color: #445d9d;

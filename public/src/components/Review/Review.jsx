@@ -7,8 +7,8 @@ import "swiper/css/pagination";
 // import required modules
 import { Autoplay, Pagination } from "swiper/modules";
 
-import Style from "./Review.module.css";
 import "./Swiper.css";
+import Style from "./Review.module.css";
 import Card from "./Card";
 import thum from "../../assets/shot.png";
 
