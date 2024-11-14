@@ -9,8 +9,8 @@ export function Share_link_form({ userData, setUserData }) {
     if (userData.isSending) return;
 
     // 필수 입력값 확인
-    if (!userData.userName)
-      return ShowAlert("info", "알림", "이름을 입력해 주세요.");
+    if (!userData.userName || userData.userName.length < 2)
+      return ShowAlert("info", "알림", "이름은 2글자 이상 입력해 주세요.");
     if (!userData.userTel)
       return ShowAlert("info", "알림", "전화번호를 입력해 주세요.");
     const phoneRegex = /^(010|011)[0-9]{8,9}$/;
@@ -38,6 +38,19 @@ export function Share_link_form({ userData, setUserData }) {
     }));
   };
 
+  // 주소 검색 후 호출될 함수
+  const execDaumPostcode = () => {
+    new window.daum.Postcode({
+      oncomplete: function (data) {
+        // 도로명 주소와 상세주소를 상태에 업데이트
+        setUserData((prevData) => ({
+          ...prevData,
+          street: data.roadAddress,
+        }));
+      },
+    }).open();
+  };
+
   return (
     <form className="shareTabApply" onSubmit={handleSubmit}>
       <Input
@@ -56,12 +69,17 @@ export function Share_link_form({ userData, setUserData }) {
       />
       <Input
         title={"도로명주소"}
-        text={"도로명주소 입력해주세요."}
+        text={"도로명주소를 입력해주세요."}
         name="street"
         value={userData.street}
-        onChange={handleInputChange}
+        onChange={handleInputChange} // 주소를 입력하는 필드에도 onChange 처리
+        id={"roadAddress"}
+        read={true} // readOnly 속성 유지
+        onClick={execDaumPostcode}
       >
-        <button type="button">주소 찾기</button>
+        <button type="button" onClick={execDaumPostcode}>
+          주소 찾기
+        </button>
       </Input>
       <Input
         title={"상세주소"}
@@ -72,6 +90,7 @@ export function Share_link_form({ userData, setUserData }) {
       />
       <div className="agree">
         <li>개인정보 동의</li>
+        {/* 모달로 동의창을 띄워야 할듯 */}
         <button className="compum" type="submit">
           신청하기
         </button>
@@ -81,7 +100,17 @@ export function Share_link_form({ userData, setUserData }) {
 }
 
 // Input 컴포넌트
-function Input({ title, text, name, value, onChange, children }) {
+function Input({
+  title,
+  text,
+  name,
+  value,
+  onChange,
+  children,
+  id,
+  read,
+  onClick,
+}) {
   return (
     <div className="inputName">
       <div className="postTest">
@@ -96,6 +125,9 @@ function Input({ title, text, name, value, onChange, children }) {
           name={name}
           value={value} // value 속성으로 상태와 연결
           onChange={onChange} // onChange 이벤트 핸들러로 상태 업데이트
+          id={id ? id : null}
+          readOnly={read} // readOnly 속성 유지
+          onClick={onClick}
         />
       </div>
     </div>

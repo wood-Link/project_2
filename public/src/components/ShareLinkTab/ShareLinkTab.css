@@ -1,6 +1,5 @@
 .ShareLinkTabBoxMom {
   background-color: #f2edea;
-  padding-bottom: 80px;
 }
 
 .ShareLinkTabBox {
@@ -94,6 +93,9 @@ li {
   font-size: 20px;
   padding-left: 10px;
 }
+#roadAddress {
+  outline: none;
+}
 
 .postTest {
   display: flex;
@@ -111,6 +113,23 @@ li {
 
 .compum:hover {
   background-color: #445d9d;
+}
+
+/* 페이지 버튼 */
+.pageButtonWrap {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+.ShareLinkTab {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.ShareLinkTab.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* 테블릿 반응 */
