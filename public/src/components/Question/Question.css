@@ -26,7 +26,7 @@
 .question_list {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 30px;
 }
 .question_contents {
   padding: 20px 17px;
@@ -45,4 +45,34 @@
 }
 .text_active {
   display: inline;
+}
+
+/* 테블릿 버전 */
+@media (max-width: 768px) {
+  .question_list {
+    gap: 20px;
+  }
+
+  .question_contents {
+    padding: 10px 17px;
+  }
+
+  .question_contents_text {
+    font-size: 20px;
+  }
+}
+
+/* 모바일 버전 */
+@media (max-width: 436px) {
+  .question_list {
+    gap: 10px;
+  }
+
+  .question_contents {
+    padding: 7px 17px;
+  }
+
+  .question_contents_text {
+    font-size: 17px;
+  }
 }

@@ -20,7 +20,7 @@ function Review() {
         <div className={Style.swiper_Warp}>
           <Swiper
             spaceBetween={45}
-            slidesPerView={3}
+            slidesPerView={1}
             loop={true}
             autoplay={{
               delay: 3000,
@@ -30,6 +30,12 @@ function Review() {
               clickable: true,
             }}
             modules={[Autoplay]}
+            breakpoints={{
+              436: {
+                slidesPerView: 3, // 436px 이하에서 1개의 슬라이드 표시
+                spaceBetween: 30, // 간격은 필요에 따라 조정
+              },
+            }}
           >
             <SwiperSlide>
               <Card img={thum} title={"타이틀"} name={"이름"} review={"리뷰"} />
