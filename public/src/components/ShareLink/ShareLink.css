@@ -64,13 +64,16 @@ input:nth-of-type(4):checked ~ section:nth-of-type(4) {
 input:nth-of-type(5):checked ~ section:nth-of-type(5) {
   display: block;
 }
-
-label {
+.buttons {
+  display: flex;
+  justify-content: right;
+}
+.buttons div {
   border-right: 1px black solid;
   padding: 0px 10px;
 }
 
-label:nth-of-type(5) {
+.buttons div:nth-of-type(5) {
   border: none;
 }
 
