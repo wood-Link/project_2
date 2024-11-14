@@ -33,10 +33,12 @@
   border-radius: 15px;
   background-color: white;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.07);
+  text-align: left;
 }
 .question_contents_text {
   font-size: 25px;
   text-align: left;
+  padding: 10px 0;
 }
 .question_contents_text_hidden {
   display: none;
