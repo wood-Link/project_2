@@ -76,7 +76,7 @@ li {
 .inputTitle {
   font-size: 30px;
   color: #445d9d;
-  padding-right: 10px;
+  padding-left: 10px;
 }
 
 .agree {
@@ -148,6 +148,15 @@ li {
     width: 120px;
     font-size: 20px;
     margin-bottom: 15px;
+  }
+
+  .inputTitle {
+    padding-left: 22px;
+  }
+
+  .inputText {
+    margin: 15px;
+    width: 90%;
   }
 }
 

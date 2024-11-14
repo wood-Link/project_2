@@ -43,7 +43,7 @@ export default function Question() {
               제품 신청 후 배송지 변경은 어떻게 하나요?
             </div>
             <div className={`question_contents_text_hidden ${state[3] ? "text_active" : ""}`}>
-              - 공방에서 신청하신 제품이 접수 완료되면, 고객님께 <strong>나눔신청 접수 알림톡</strong>이 발송됩니다. 해당 알림톡에서 <strong>배송지 변경란</strong>을 이용해 배송지 정보를 수정하실 수 있습니다
+              - 공방에서 신청하신 제품이 접수 완료되면, 고객님께 <strong>나눔신청 접수 알림톡</strong>이 발송됩니다. 해당 알림톡에서 <strong>배송지 변경란</strong>을 이용해 배송지 정보를 수정하실 수 있습니다.
             </div>
           </div>
           <div className="question_contents">
@@ -51,7 +51,7 @@ export default function Question() {
               취소 하고 싶은데 어떻게 해야하나요?
             </div>
             <div className={`question_contents_text_hidden ${state[4] ? "text_active" : ""}`}>
-              - 공방에서 신청하신 제품이 접수 완료되면, 고객님께 <strong>나눔신청 접수 알림톡</strong>이 발송됩니다. 해당 알림톡에서 <strong>접수 취소란</strong> 이용해 접수 취소를 하실 수 있습니다 (배송이 진행 중일 경우 어려울 수 있습니다.)
+              - 공방에서 신청하신 제품이 접수 완료되면, 고객님께 <strong>나눔신청 접수 알림톡</strong>이 발송됩니다. 해당 알림톡에서 <strong>접수 취소란</strong>을 이용해 접수 취소를 하실 수 있습니다. (배송이 진행 중일 경우 어려울 수 있습니다.)
             </div>
           </div>
           <div className="question_contents">
