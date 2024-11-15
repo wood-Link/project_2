@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+.tegBoxBack {
+  background-color: #f2edea;
+}
+
 .tegBox {
   width: 100%;
   max-width: 1420px;
@@ -13,10 +17,10 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 30px;
   padding: 20px;
   align-items: center;
-  padding: 50px 0;
+  padding: 120px 0;
 }
 
 .row {
@@ -74,20 +78,20 @@
 
 @keyframes upDown {
   0% {
-    transform: translateY(-5px);
+    transform: translateY(-4px);
   }
   50% {
-    transform: translateY(5px);
+    transform: translateY(4px);
   }
   100% {
-    transform: translateY(-5px);
+    transform: translateY(-4px);
   }
 }
 
 /* PC 버전 (1024px 이상): 4/4 배치 */
 @media (min-width: 769px) {
   .row {
-    gap: 50px;
+    gap: 30px;
   }
 
   /* 태블릿과 모바일용 행 숨김 */

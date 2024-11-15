@@ -7,7 +7,7 @@ import "./Swiper.css";
 
 function Main() {
   return (
-    <section className="mainBox">
+    <section className="mainBox" id="mainBox">
       <Swiper
         spaceBetween={50} // 슬라이드 간의 공간
         slidesPerView={1} // 한번에 보여지는 슬라이드 개수

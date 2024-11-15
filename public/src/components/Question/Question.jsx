@@ -18,7 +18,7 @@ export default function Question() {
   }
 
   return (
-    <div className="question_wrap">
+    <div className="question_wrap" id="questionBox">
       <section className="question">
         <div className="question_title">자주묻는 질문</div>
         <div className="question_text">고객님들께서 자주 물어보시는 내용을 정리했어요</div>

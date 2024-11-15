@@ -1,3 +1,14 @@
+.review_card {
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.cardBox {
+  border: 1px solid black;
+  margin: 10px;
+  border-radius: 10px;
+}
+
 .review_card_inner {
   width: 100%;
   margin-bottom: 18px;
