@@ -11,7 +11,7 @@
 
 .ShareLinkBox {
   width: 100%;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   max-width: 1420px;
   justify-content: center;
   margin: 0 auto;
@@ -33,6 +33,14 @@
   height: 200px; /* 고정 높이 */
   object-fit: cover;
   display: none;
+}
+
+.shareImg {
+  width: 100%;
+  height: 340px; /* 고정된 높이 */
+  object-fit: cover; /* 이미지를 잘라서 컨테이너를 완전히 채우게 */
+  object-position: center; /* 이미지 중앙 정렬 */
+  margin: 0 auto;
 }
 
 /* 탭 메뉴 스타일 */

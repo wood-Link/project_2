@@ -4,7 +4,7 @@ import { Share_link_form } from "./Share_link_form";
 import { Share_link_card } from "./Share_link_card";
 import pageButton from "../../assets/pageButton.png";
 
-function ShareLinkTab({ setContents, className }) {
+function ShareLinkTab({ setContents }) {
   const [userData, setUserData] = useState({
     userName: "",
     userTel: "",
@@ -24,11 +24,7 @@ function ShareLinkTab({ setContents, className }) {
           <Share_link_form userData={userData} setUserData={setUserData} />
         </section>
         <div className="pageButtonWrap">
-          <img
-            src={pageButton}
-            alt="페이지 버튼"
-            onClick={() => setContents(false)}
-          />
+          <img src={pageButton} alt="페이지 버튼" onClick={() => setContents(false)} />
         </div>
       </section>
     </section>
