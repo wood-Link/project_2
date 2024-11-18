@@ -1,48 +1,72 @@
 import Swal from "sweetalert2";
 import { ShowAlert, ShowLoading } from "./AlertUtils";
+import { useState } from "react";
 
-// Share_link_form 컴포넌트
-export function Share_link_form({ userData, setUserData }) {
+export function Share_link_form({ productData }) {
+  const [isSending, setIsSending] = useState(false); // 전송 상태 관리
+  const [userData, setUserData] = useState({
+    userName: "",
+    userTel: "",
+    street: "",
+    address: "",
+  });
+
   // 폼 제출 함수
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (userData.isSending) return;
+    if (isSending) return; // 전송 중에는 다시 제출되지 않도록
 
-    // 필수 입력값 확인
-    if (!userData.userName || userData.userName.length < 2)
-      return ShowAlert("info", "알림", "이름은 2글자 이상 입력해 주세요.");
-    if (!userData.userTel)
-      return ShowAlert("info", "알림", "전화번호를 입력해 주세요.");
-    const phoneRegex = /^(010|011)[0-9]{8,9}$/;
-    if (!phoneRegex.test(userData.userTel)) {
-      return ShowAlert("info", "알림", "올바른 전화번호 형식을 입력해 주세요.");
+    // 필수 입력값 확인 함수
+    if (!validateForm()) return;
+
+    // 주소지와 상세주소 입력값 결합
+    const joinAdress = userData.street + userData.address;
+
+    try {
+      setIsSending(true); // 전송 시작
+      ShowLoading("발송 중...");
+
+      const data = {
+        name: userData.userName, // 고객명
+        phone: userData.userTel, //전화번호
+        workshop: productData.location, // 공방 이름
+        product: productData.product, // 제품 명
+        address: joinAdress, // 배송 주소
+        url: "www.naver.com", // 테스트용 url
+      };
+
+      const response = await fetch("http://13.236.93.243:8001/api/apply", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) throw new Error("Network response was not ok");
+
+      const result = await response.json();
+      console.log("서버 응답", result);
+      ShowAlert("success", "성공", "메시지가 성공적으로 전송되었습니다.");
+    } catch (error) {
+      console.error("Error:", error);
+      ShowAlert("error", "실패", "메시지 전송에 실패했습니다.");
+    } finally {
+      setIsSending(false); // 전송 완료 후 상태 리셋
     }
-    if (!userData.street)
-      return ShowAlert("info", "알림", "도로명주소를 입력해 주세요.");
-    if (!userData.address)
-      return ShowAlert("info", "알림", "상세주소를 입력해 주세요.");
-
-    setUserData((prevData) => ({ ...prevData, isSending: true }));
-    ShowAlert("success", "성공", "메시지가 성공적으로 전송되었습니다.");
-
-    setUserData((prevData) => ({ ...prevData, isSending: false }));
-    console.log("전송 완료");
   };
 
-  // 상태 업데이트 함수
+  // 폼에서 입력 된 데이터 받아오는 함수
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setUserData((prevData) => ({
       ...prevData,
-      [name]: value, // name 속성에 맞는 필드 업데이트
+      [name]: value,
     }));
   };
 
-  // 주소 검색 후 호출될 함수
+  // 카카오 검색 api 함수
   const execDaumPostcode = () => {
     new window.daum.Postcode({
       oncomplete: function (data) {
-        // 도로명 주소와 상세주소를 상태에 업데이트
         setUserData((prevData) => ({
           ...prevData,
           street: data.roadAddress,
@@ -72,9 +96,8 @@ export function Share_link_form({ userData, setUserData }) {
         text={"도로명주소를 입력해주세요."}
         name="street"
         value={userData.street}
-        onChange={handleInputChange} // 주소를 입력하는 필드에도 onChange 처리
-        id={"roadAddress"}
-        read={true} // readOnly 속성 유지
+        onChange={handleInputChange}
+        read={true}
         onClick={execDaumPostcode}
       >
         <button type="button" onClick={execDaumPostcode}>
@@ -90,16 +113,15 @@ export function Share_link_form({ userData, setUserData }) {
       />
       <div className="agree">
         <li>개인정보 동의</li>
-        {/* 모달로 동의창을 띄워야 할듯 */}
-        <button className="compum" type="submit">
-          신청하기
+        <button className="compum" type="submit" disabled={isSending}>
+          {isSending ? "전송 중..." : "신청하기"}
         </button>
       </div>
     </form>
   );
 }
 
-// Input 컴포넌트
+// 인풋태그 컴포넌트
 function Input({
   title,
   text,
@@ -123,13 +145,39 @@ function Input({
           type="text"
           placeholder={text}
           name={name}
-          value={value} // value 속성으로 상태와 연결
-          onChange={onChange} // onChange 이벤트 핸들러로 상태 업데이트
-          id={id ? id : null}
-          readOnly={read} // readOnly 속성 유지
+          value={value}
+          onChange={onChange}
+          id={id}
+          readOnly={read}
           onClick={onClick}
         />
       </div>
     </div>
   );
 }
+
+// 유효성 검사 함수
+const validateForm = () => {
+  if (!userData.userName || userData.userName.length < 2) {
+    ShowAlert("info", "알림", "이름은 2글자 이상 입력해 주세요.");
+    return false;
+  }
+  if (!userData.userTel) {
+    ShowAlert("info", "알림", "전화번호를 입력해 주세요.");
+    return false;
+  }
+  const phoneRegex = /^(010|011)[0-9]{8,9}$/;
+  if (!phoneRegex.test(userData.userTel)) {
+    ShowAlert("info", "알림", "올바른 전화번호 형식을 입력해 주세요.");
+    return false;
+  }
+  if (!userData.street) {
+    ShowAlert("info", "알림", "도로명주소를 입력해 주세요.");
+    return false;
+  }
+  if (!userData.address) {
+    ShowAlert("info", "알림", "상세주소를 입력해 주세요.");
+    return false;
+  }
+  return true; // 모든 검증 통과 시 true 반환
+};

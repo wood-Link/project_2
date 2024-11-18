@@ -1,5 +1,3 @@
-import ShareLinkTab from "../ShareLinkTab/ShareLinkTab";
-import "./ShareLink.css";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
@@ -7,18 +5,31 @@ import "Swiper/css";
 import "Swiper/css/pagination";
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import { useState } from "react";
 
+import { useState } from "react";
+import ShareLinkTab from "../ShareLinkTab/ShareLinkTab.jsx";
+import "./ShareLink.css";
 import dummyData from "./dummyData";
 
 function ShareLink() {
   const [contents, setContents] = useState(false); // 나눔 신청 폼 토글
   const [category, setCategory] = useState("desk"); // 카테고리 선택
-  const [productId, setProductId] = useState(null); // 자식 컴포넌트에서 상품의 데이터를 찾을 때 사용
 
-  function listToggle(dataId) {
+  const [productInfo, setProductInfo] = useState({
+    // 제품의 아이디와 제품명, 제작 한 공방의 이름이 담김
+    productId: "",
+    product: "",
+    location: "",
+  });
+
+  // 리스트 토글기능 및 클릭한 제품의 정보 state로 저장
+  function listToggle(productId, product, location) {
     setContents((prevState) => !prevState);
-    setProductId(dataId);
+    setProductInfo({
+      productId: productId,
+      product: product,
+      location: location,
+    });
   }
   return (
     <main className="ShareLinkBoxMom">
@@ -66,21 +77,22 @@ function ShareLink() {
               },
             }}
           >
+            {/* dummyData에서 카테고리는 useState로 선택됨 */}
             {dummyData[category].map((data) => (
-              <SwiperSlide key={data.id} onClick={() => listToggle(data.id)}>
+              <SwiperSlide
+                key={data.id}
+                onClick={() => listToggle(data.id, data.name, data.location)}
+              >
                 <img className="shareImg" src={data.img}></img>
               </SwiperSlide>
             ))}
-            {/* map 테스트중 */}
-            {/* .map으로 리스트 출력시 예시 */}
-            {/* {cardList.map(card => <SwiperSlide key={card.id} onClick={listToggle}>{card}</SwiperSlide>)} */}
-            {/* useState로 map을 사용 할 배열의 이름을 바꾸면 되려나 */}
           </Swiper>
         </section>
+        {/* 리스트의 상품을 클릭하면 폼 생성 후 props로 토글 기능과 간단한 정보, 카테고리를 전달 */}
         {contents ? (
           <ShareLinkTab
             setContents={setContents}
-            productId={productId}
+            productInfo={productInfo}
             category={category}
           />
         ) : null}
