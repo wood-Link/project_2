@@ -36,9 +36,7 @@ function ShareLink() {
       <div className="ShareLinkBox" id="ShareLinkBox">
         <section className="titleBox">
           <li className="title">나눔링크</li>
-          <li className="subTitle">
-            공방 사장님들의 스크래치, 리퍼브 제품들을 나눔해요
-          </li>
+          <li className="subTitle">공방 사장님들의 스크래치, 리퍼브 제품들을 나눔해요</li>
         </section>
         <section className="aside">
           <aside>
@@ -65,13 +63,13 @@ function ShareLink() {
             }}
             modules={[Autoplay, Navigation]}
             breakpoints={{
-              736: {
+              1024: {
                 slidesPerView: 3.5, // 436px 이하에서 1개의 슬라이드 표시
                 spaceBetween: 30, // 간격은 필요에 따라 조정
                 centeredSlides: true,
               },
               436: {
-                slidesPerView: 1.5, // 436px 이하에서 1개의 슬라이드 표시
+                slidesPerView: 2.5, // 436px 이하에서 1개의 슬라이드 표시
                 spaceBetween: 30, // 간격은 필요에 따라 조정
                 centeredSlides: true,
               },

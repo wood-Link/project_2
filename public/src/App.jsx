@@ -5,7 +5,6 @@ import Review from "./components/Review/Review";
 import Question from "./components/Question/Question";
 import Footer from "./components/Footer/Footer";
 import ShareLink from "./components/ShareLink/ShareLink";
-
 import Main from "./components/Main/Main";
 
 function App() {
