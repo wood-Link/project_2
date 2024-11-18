@@ -116,6 +116,17 @@ export const dummyData = {
       reason: "배송 중 모서리 손상",
       size: [1050, 600, 730],
     },
+    {
+      id: 11,
+      img: share5,
+      name: "Rustic Farmhouse Table",
+      category: "table",
+      location: "Rustic Charm",
+      cost: "80만원",
+      price: "25만원",
+      reason: "배송 중 모서리 손상",
+      size: [1050, 600, 730],
+    },
   ],
 };
 
