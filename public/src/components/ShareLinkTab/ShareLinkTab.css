@@ -17,7 +17,7 @@
 .tabTitle {
   color: #8b634b;
   font-weight: bold;
-  font-size: 50px;
+  font-size: 35px;
   text-align: center;
   padding: 80px 0 80px 0;
 }
@@ -73,7 +73,7 @@ li {
 }
 
 .inputTitle {
-  font-size: 30px;
+  font-size: 25px;
   color: #445d9d;
   padding-left: 10px;
 }
@@ -133,9 +133,9 @@ li {
 }
 
 /* 테블릿 반응 */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .tabTitle {
-    font-size: 40px;
+    font-size: 30px;
   }
 
   .ShareLinkTabBox {
