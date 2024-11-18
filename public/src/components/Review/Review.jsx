@@ -31,13 +31,13 @@ function Review() {
             }}
             modules={[Autoplay]}
             breakpoints={{
-              736: {
+              1024: {
                 slidesPerView: 3.5, // 436px 이하에서 1개의 슬라이드 표시
                 spaceBetween: 30, // 간격은 필요에 따라 조정
                 centeredSlides: true,
               },
               436: {
-                slidesPerView: 1.5, // 436px 이하에서 1개의 슬라이드 표시
+                slidesPerView: 2.5, // 436px 이하에서 1개의 슬라이드 표시
                 spaceBetween: 30, // 간격은 필요에 따라 조정
                 centeredSlides: true,
               },
