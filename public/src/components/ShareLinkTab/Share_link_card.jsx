@@ -10,13 +10,15 @@ export function Share_link_card({ category, productId }) {
       </div>
       <div className="shareTabExplain">
         <strong className="textTitle">
-          {product.location} /{product.name}
+          <p className="textTitlePaddig">
+            {product.location} /{product.name}
+          </p>
         </strong>
-        <li className="test">
-          원가 : {product.cost} / 나눔가격 : {product.price}
+        <li className="subTextTitle">
+          - 원가 : {product.cost} / 나눔가격 : {product.price}
         </li>
-        <li>나눔사유 : {product.reason}</li>
-        <li>{product.size.join(" * ")} (가로/세로/높이 단위:mm)</li>
+        <li className="subTextTitle">- 나눔사유 : {product.reason}</li>
+        <li className="subTextTitle">- {product.size.join(" * ")} (가로/세로/높이 단위:mm)</li>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 body {
-  padding-top: 100px; /* headerBox의 높이만큼 여백 추가 */
+  padding-top: 80px; /* headerBox의 높이만큼 여백 추가 */
 }
 
 a {
@@ -15,7 +15,7 @@ a {
 }
 
 .headerBox {
-  height: 100px;
+  height: 80px;
   justify-content: space-between;
   display: flex;
   width: 100%;
@@ -53,6 +53,7 @@ a {
   border-right: 1px solid black;
   padding: 0px 10px;
   font-size: 25px;
+  line-height: 25px;
 }
 
 /* 테블릿 반응 */
