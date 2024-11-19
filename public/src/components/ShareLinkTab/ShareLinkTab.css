@@ -61,6 +61,11 @@ li {
   font-size: 20px;
 }
 
+.shareTabExplain span {
+  font-size: 14px;
+  vertical-align: middle;
+}
+
 /* 신청란 신청 파트 */
 
 .shareTabApply {
