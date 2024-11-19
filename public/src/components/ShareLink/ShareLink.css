@@ -57,6 +57,7 @@
 .buttons div {
   border-right: 1px black solid;
   padding: 0px 10px;
+  line-height: 16px;
 }
 
 .buttons div:nth-of-type(5) {
