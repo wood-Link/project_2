@@ -1,5 +1,7 @@
 import { useState } from "react";
 import "./Question.css";
+import arrow from "../../assets/img/arrow.png";
+import arrow2 from "../../assets/img/arrow2.png";
 
 export default function Question() {
   const [state, setState] = useState({
@@ -13,7 +15,7 @@ export default function Question() {
   function toggle(num) {
     setState((prevState) => ({
       ...prevState,
-      [num]: !prevState[num],
+      [num]: !prevState[num], // 상태를 반전시켜서 펼쳐지거나 접히게 함
     }));
   }
 
@@ -24,8 +26,10 @@ export default function Question() {
         <div className="question_text">고객님들께서 자주 물어보시는 내용을 정리했어요</div>
         <div className="question_list">
           <div className="question_contents">
-            <div className="question_contents_text" onClick={() => toggle(1)}>
+            <div className={`question_contents_text ${state[1] ? "text_active" : ""}`} onClick={() => toggle(1)}>
               배송은 언제 되나요?
+              <img className="arrow" src={arrow} alt="arrow" />
+              <img className="arrow2" src={arrow2} alt="arrow2" />
             </div>
             <div className={`question_contents_text_hidden ${state[1] ? "text_active" : ""}`}>
               <p>
@@ -34,28 +38,36 @@ export default function Question() {
               </p>
             </div>
           </div>
+
+          {/* 나머지 질문들도 동일한 방식으로 적용 */}
           <div className="question_contents">
-            <div className="question_contents_text" onClick={() => toggle(2)}>
+            <div className={`question_contents_text ${state[2] ? "text_active" : ""}`} onClick={() => toggle(2)}>
               결제는 어떻게 하나요?
+              <img className="arrow" src={arrow} alt="arrow" />
+              <img className="arrow2" src={arrow2} alt="arrow2" />
             </div>
             <div className={`question_contents_text_hidden ${state[2] ? "text_active" : ""}`}>
               <p>결제 방법에 대한 설명</p>
             </div>
           </div>
+
           <div className="question_contents">
-            <div className="question_contents_text" onClick={() => toggle(3)}>
+            <div className={`question_contents_text ${state[3] ? "text_active" : ""}`} onClick={() => toggle(3)}>
               제품 신청 후 배송지 변경은 어떻게 하나요?
+              <img className="arrow" src={arrow} alt="arrow" />
+              <img className="arrow2" src={arrow2} alt="arrow2" />
             </div>
             <div className={`question_contents_text_hidden ${state[3] ? "text_active" : ""}`}>
               <p>
-                {" "}
                 - 나눔신청 및 공방에서 신청하신 제품이 접수 완료되면, 고객님께 <strong>나눔신청 접수 알림톡</strong>이 발송됩니다. 해당 알림톡에서 <strong>배송지 변경란</strong>을 이용해 배송지 정보를 수정하실 수 있습니다.
               </p>
             </div>
           </div>
           <div className="question_contents">
-            <div className="question_contents_text" onClick={() => toggle(4)}>
+            <div className={`question_contents_text ${state[4] ? "text_active" : ""}`} onClick={() => toggle(4)}>
               취소 하고 싶은데 어떻게 해야하나요?
+              <img className="arrow" src={arrow} alt="arrow" />
+              <img className="arrow2" src={arrow2} alt="arrow2" />
             </div>
             <div className={`question_contents_text_hidden ${state[4] ? "text_active" : ""}`}>
               <p>
@@ -64,8 +76,10 @@ export default function Question() {
             </div>
           </div>
           <div className="question_contents">
-            <div className="question_contents_text" onClick={() => toggle(5)}>
+            <div className={`question_contents_text ${state[5] ? "text_active" : ""}`} onClick={() => toggle(5)}>
               기타 문의 사항
+              <img className="arrow" src={arrow} alt="arrow" />
+              <img className="arrow2" src={arrow2} alt="arrow2" />
             </div>
             <div className={`question_contents_text_hidden ${state[5] ? "text_active" : ""}`}>
               <p>

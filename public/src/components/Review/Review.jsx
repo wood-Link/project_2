@@ -36,10 +36,15 @@ function Review() {
                 spaceBetween: 30, // 간격은 필요에 따라 조정
                 centeredSlides: true,
               },
-              436: {
+              700: {
                 slidesPerView: 2.5, // 436px 이하에서 1개의 슬라이드 표시
                 spaceBetween: 30, // 간격은 필요에 따라 조정
                 centeredSlides: true,
+              },
+              436: {
+                slidesPerView: 1.7, // 436px 이하에서 1개의 슬라이드 표시
+                spaceBetween: 30, // 간격은 필요에 따라 조정
+                // centeredSlides: true,
               },
             }}
           >
