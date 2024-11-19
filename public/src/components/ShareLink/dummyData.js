@@ -10,7 +10,7 @@ export const dummyData = {
       id: 1,
       img: share1,
       name: "Rustic Oak Dining Table",
-      category: "table",
+      category: "desk",
       location: "WoodCraft Studio",
       cost: "100만원",
       price: "25만원",
