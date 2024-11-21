@@ -47,7 +47,9 @@ export default function Question() {
               <img className="arrow2" src={arrow2} alt="arrow2" />
             </div>
             <div className={`question_contents_text_hidden ${state[2] ? "text_active" : ""}`}>
-              <p>결제 방법에 대한 설명</p>
+              <p>
+                나눔신청 및 공방에서 신청하신 제품이 접수를 하시면, 고객님께 <strong>나눔신청 접수 알림톡</strong>이 발송됩니다. 해당 알림톡에서 <strong>결제하기란</strong>을 이용해 결제를 하실 수 있습니다.
+              </p>
             </div>
           </div>
 
