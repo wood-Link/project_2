@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"; // useState, useEffect 추가
-
+import images from "../js/images.js";
 // Swiper
 import { Swiper, SwiperSlide } from "swiper/react";
 import "Swiper/css";
@@ -45,11 +45,12 @@ export function Share_link_card({ category, productId }) {
 
   return (
     <div className="shareTab">
-      {/* 슬라이더 구현중 */}
       <Swiper
         spaceBetween={0}
         slidesPerView={1}
+        initialSlide={0} // 첫 번째 슬라이드로 설정
         loop={true}
+        grabCursor={true}
         autoplay={{
           delay: 3000,
           disableOnInteraction: false,
@@ -64,8 +65,8 @@ export function Share_link_card({ category, productId }) {
             <SwiperSlide key={index}>
               <div className="shareTabImg">
                 <img
-                  src={`../../../assets/img/${image}.jpg`}
-                  alt={product?.name ? `${product.name}` : "이미지 없음"}
+                  src={images[`${image}.jpg`]}
+                  alt={image ? `${image}` : "이미지 없음"}
                   className="product_image"
                 />
               </div>
@@ -87,7 +88,7 @@ export function Share_link_card({ category, productId }) {
             {product?.name || "데이터 없음"}
           </p>
         </strong>
-        <li className="test">
+        <li className="subTextTitle">
           원가 : {product?.cost || "데이터 없음"} / 나눔가격 :{" "}
           {product?.price || "데이터 없음"}
         </li>

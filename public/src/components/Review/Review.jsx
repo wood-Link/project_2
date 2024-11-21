@@ -9,7 +9,7 @@ import { Autoplay } from "swiper/modules";
 
 import "./Swiper.css";
 import Style from "./Review.module.css";
-import Card from "./Card.jsx";
+import Card from "./Review_Card.jsx";
 import thum from "../../assets/shot.png";
 import { useState, useEffect } from "react";
 
@@ -27,6 +27,7 @@ function Review() {
         });
         const result = await response.json(); // 응답을 JSON으로 파싱
         setReviewData(result);
+        console.log(result);
         setIsLoading(false); // 데이터 로딩 완료
       } catch (error) {
         console.error("데이터 요청 실패:", error); // 에러 처리
@@ -35,7 +36,7 @@ function Review() {
     };
 
     fetchData();
-  }, [reviewData]);
+  }, []);
   return (
     <>
       <section className={Style.review_section} id="reviewBox">
@@ -52,6 +53,7 @@ function Review() {
             pagination={{
               clickable: true,
             }}
+            grabCursor={true}
             modules={[Autoplay]}
             breakpoints={{
               1024: {
@@ -71,40 +73,11 @@ function Review() {
               },
             }}
           >
-            <SwiperSlide>
-              <Card img={thum} title={"타이틀"} name={"이름"} review={"리뷰"} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Card img={thum} title={"타이틀"} name={"이름"} review={"리뷰"} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Card img={thum} title={"타이틀"} name={"이름"} review={"리뷰"} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Card img={thum} title={"타이틀"} name={"이름"} review={"리뷰"} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Card img={thum} title={"타이틀"} name={"이름"} review={"리뷰"} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Card img={thum} title={"타이틀"} name={"이름"} review={"리뷰"} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Card img={thum} title={"타이틀"} name={"이름"} review={"리뷰"} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Card img={thum} title={"타이틀"} name={"이름"} review={"리뷰"} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <Card img={thum} title={"타이틀"} name={"이름"} review={"리뷰"} />
-            </SwiperSlide>
-            {/* {reviewData.map((data) => (
+            {reviewData.map((data) => (
               <SwiperSlide key={data._id}>
-                <Card
-                  data={data}
-                />
+                <Card data={data} />
               </SwiperSlide>
-            ))} */}
+            ))}
           </Swiper>
         </div>
       </section>

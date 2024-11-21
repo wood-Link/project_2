@@ -1,10 +1,9 @@
 .review_card {
-  border: 1px solid black;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.07);
   border-radius: 10px;
 }
 
 .cardBox {
-  border: 1px solid black;
   margin: 10px;
   border-radius: 10px;
 }
