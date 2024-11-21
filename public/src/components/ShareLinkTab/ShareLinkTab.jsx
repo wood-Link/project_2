@@ -17,10 +17,7 @@ function ShareLinkTab({ setSelectedProductId, category, productInfo }) {
         </div>
         <section className="shareApply">
           {/* 선택된 제품의 카테고리와 ID를 props로 전달 */}
-          <Share_link_card
-            category={category}
-            productId={productInfo.productId}
-          />
+          <Share_link_card category={category} productId={productInfo.productId} />
           {/* 제품 정보와 카테고리 등을 폼에 전달 */}
           <Share_link_form productInfo={productInfo} />
         </section>

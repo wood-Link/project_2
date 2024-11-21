@@ -4,7 +4,7 @@
 
 .ShareLinkTabBox {
   width: 100%;
-  max-width: 1420px;
+  max-width: 1200px;
   margin: 0 auto;
   /* padding: 80px; */
 }
@@ -20,10 +20,6 @@
   font-size: 35px;
   text-align: center;
   padding: 80px 0 80px 0;
-}
-
-.test {
-  width: 100%;
 }
 
 /* 신청란 이미지 파트 */
