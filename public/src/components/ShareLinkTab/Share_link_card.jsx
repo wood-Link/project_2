@@ -71,22 +71,22 @@ export function Share_link_card({ category, productId }) {
 
       <div className="shareTabExplain">
         <strong className="textTitle">
-
- <p className="textTitlePaddig">
-          {product?.location || "데이터 없음"} /{" "}
-          {product?.name || "데이터 없음"}
-     </p>
+          <p className="textTitlePaddig">
+            {product?.workshop || "데이터 없음"} /{" "}
+            {product?.name || "데이터 없음"}
+          </p>
         </strong>
         <li className="test">
           원가 : {product?.cost || "데이터 없음"} / 나눔가격 :{" "}
           {product?.price || "데이터 없음"}
         </li>
-        <li className="subTextTitle">- 나눔사유 : {product?.reason || "데이터 없음"}</li>
-        <li className="subTextTitle">- 
-          {product?.size?.[0] || 0} <span>*</span> {product?.size?.[1] || 0}{" "}
+        <li className="subTextTitle">
+          - 나눔사유 : {product?.reason || "데이터 없음"}
+        </li>
+        <li className="subTextTitle">
+          -{product?.size?.[0] || 0} <span>*</span> {product?.size?.[1] || 0}{" "}
           <span>*</span> {product?.size?.[2] || 0} (가로/세로/높이 단위:mm)
         </li>
-
       </div>
     </div>
   );
