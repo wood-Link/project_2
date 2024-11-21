@@ -68,18 +68,21 @@
   display: inline; /* 펼쳐졌을 때 arrow2 보이도록 */
 }
 
-.question_contents_text_hidden {
-  display: none;
-  font-weight: 350;
-  word-break: keep-all;
-}
-
 .question_contents_text_hidden p {
   margin: 10px 0;
 }
 
+.question_contents_text_hidden {
+  max-height: 0; /* 초기에는 높이를 0으로 설정하여 숨김 */
+  overflow: hidden; /* 콘텐츠가 넘치지 않도록 숨김 */
+  opacity: 0; /* 초기 투명도는 0으로 설정 */
+  transition: max-height 0.5s ease, opacity 0.5s ease; /* 높이와 투명도에 애니메이션 효과 적용 */
+  font-weight: 350;
+}
+
 .text_active {
-  display: inline;
+  max-height: 500px; /* 펼쳐졌을 때 충분한 높이를 설정 (컨텐츠가 커지면 적절하게 조정) */
+  opacity: 1; /* 펼쳐졌을 때 투명도를 1로 설정 */
 }
 
 /* 테블릿 버전 */

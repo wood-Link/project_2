@@ -6,6 +6,7 @@ import Question from "./components/Question/Question";
 import Footer from "./components/Footer/Footer";
 import ShareLink from "./components/ShareLink/ShareLink";
 import Main from "./components/Main/Main";
+import Delivery from "./components/Delivery/Delivery";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <ShareLink />
       <Review />
       <Question />
+      <Delivery />
       <Footer />
     </>
   );
