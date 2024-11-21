@@ -11,8 +11,31 @@ import "./Swiper.css";
 import Style from "./Review.module.css";
 import Card from "./Card.jsx";
 import thum from "../../assets/shot.png";
+import { useState, useEffect } from "react";
 
 function Review() {
+  const [reviewData, setReviewData] = useState([]); // api 데이터
+  const [isLoading, setIsLoading] = useState(true); // 로딩 상태
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setIsLoading(true); // 데이터 로딩 시작
+        const response = await fetch(`http://13.236.93.243:8001/api/review/`, {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+        });
+        const result = await response.json(); // 응답을 JSON으로 파싱
+        setReviewData(result);
+        setIsLoading(false); // 데이터 로딩 완료
+      } catch (error) {
+        console.error("데이터 요청 실패:", error); // 에러 처리
+        setIsLoading(false); // 데이터 로딩 실패 후에도 종료
+      }
+    };
+
+    fetchData();
+  }, [reviewData]);
   return (
     <>
       <section className={Style.review_section} id="reviewBox">
@@ -75,6 +98,13 @@ function Review() {
             <SwiperSlide>
               <Card img={thum} title={"타이틀"} name={"이름"} review={"리뷰"} />
             </SwiperSlide>
+            {/* {reviewData.map((data) => (
+              <SwiperSlide key={data._id}>
+                <Card
+                  data={data}
+                />
+              </SwiperSlide>
+            ))} */}
           </Swiper>
         </div>
       </section>

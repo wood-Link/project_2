@@ -59,14 +59,25 @@ export function Share_link_card({ category, productId }) {
         }}
         modules={[Autoplay, Navigation]}
       >
-        <SwiperSlide>
-          <div className="shareTabImg">
-            <img
-              src={product?.img[0] || "이미지 없음"}
-              alt={product?.name || "이미지 없음"}
-            />
-          </div>
-        </SwiperSlide>
+        {product?.img?.length > 0 ? (
+          product.img.map((image, index) => (
+            <SwiperSlide key={index}>
+              <div className="shareTabImg">
+                <img
+                  src={`../../../assets/img/${image}.jpg`}
+                  alt={product?.name ? `${product.name}` : "이미지 없음"}
+                  className="product_image"
+                />
+              </div>
+            </SwiperSlide>
+          ))
+        ) : (
+          <SwiperSlide>
+            <div className="shareTabImg">
+              <p>이미지가 없습니다.</p>
+            </div>
+          </SwiperSlide>
+        )}
       </Swiper>
 
       <div className="shareTabExplain">
