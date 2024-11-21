@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import { ShowAlert, ShowLoading } from "./AlertUtils";
+import { ShowAlert, ShowLoading } from "../js/AlertUtils";
 import { useState } from "react";
 
 export function Share_link_form({ productInfo }) {

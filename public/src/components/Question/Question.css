@@ -40,6 +40,9 @@
   margin: auto 0;
   padding: 20px;
 }
+.question_contents:hover {
+  cursor: pointer;
+}
 
 .question_contents_text {
   font-size: 22px;

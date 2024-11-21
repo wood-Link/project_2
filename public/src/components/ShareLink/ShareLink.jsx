@@ -6,7 +6,7 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { useState, useEffect } from "react";
 import ShareLinkTab from "../ShareLinkTab/ShareLinkTab.jsx";
 import "./ShareLink.css";
-
+import images from "../js/images.js";
 function ShareLink() {
   const [category, setCategory] = useState("desk"); // 카테고리 선택
   const [products, setProducts] = useState([]); // api 데이터
@@ -84,7 +84,9 @@ function ShareLink() {
             <Swiper
               spaceBetween={45}
               slidesPerView={1}
+              // initialSlide={0} // 첫 번째 슬라이드로 설정
               loop={true}
+              grabCursor={true}
               autoplay={{
                 delay: 3000,
                 disableOnInteraction: false,
@@ -113,7 +115,12 @@ function ShareLink() {
                     handleCardClick(data._id, data.name, data.workshop)
                   }
                 >
-                  <img className="shareImg" src={data.img[0]} alt={data.name} />
+                  <img
+                    className="shareImg"
+                    // 객체-[객체데이터 접근].jpg
+                    src={images[`${data.img[0]}.jpg`]}
+                    alt={data.name}
+                  />
                 </SwiperSlide>
               ))}
             </Swiper>
