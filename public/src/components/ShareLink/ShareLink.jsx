@@ -1,24 +1,28 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import "Swiper/css";
-import "Swiper/css/pagination";
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
 
-import { useState, useEffect } from "react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
+import { useState, useEffect, useRef } from "react";
 import ShareLinkTab from "../ShareLinkTab/ShareLinkTab.jsx";
 import "./ShareLink.css";
 import images from "../js/images.js";
+import { swiperConfig } from "../js/swiperConfig.js";
+
 function ShareLink() {
   const [category, setCategory] = useState("desk"); // 카테고리 선택
   const [products, setProducts] = useState([]); // api 데이터
   const [selectedProductId, setSelectedProductId] = useState(null); // 선택된 제품 ID
+  const [isLoading, setIsLoading] = useState(true); // 로딩 상태
   const [productInfo, setProductInfo] = useState({
     productId: "",
     product: "",
     location: "",
   });
-
-  // 로딩 상태 추가
-  const [isLoading, setIsLoading] = useState(true); // 로딩 상태
+  const skeleton = [1, 2, 3, 4, 5, 6];
+  const swiperRef = useRef(null); // Swiper 인스턴스를 참조
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,11 +47,20 @@ function ShareLink() {
     fetchData();
   }, [category]);
 
+  // isLoading이 변경될 때 Swiper 슬라이드를 갱신
+  useEffect(() => {
+    if (!isLoading && swiperRef.current) {
+      swiperRef.current.swiper.update(); // Swiper 업데이트
+      swiperRef.current.swiper.autoplay.start(); // 자동 슬라이드 시작
+    }
+  }, [isLoading]);
+
   // 제품 클릭 시 상태 업데이트
   function handleCardClick(productId, product, location) {
     setSelectedProductId(
-      (prevState) => (prevState === productId ? null : productId) // 이미 선택된 제품을 다시 클릭하면 해당 제품을 사라지게 함
+      (prevState) => (prevState === productId ? null : productId) // 이미 선택된 제품을 다시 클릭하면 닫힘
     );
+    // 제품의 정보를 state로 저장
     setProductInfo({
       productId: productId,
       product: product,
@@ -77,54 +90,36 @@ function ShareLink() {
         </section>
 
         <section className="ShareLinkList">
-          {/* 로딩 중일 때는 로딩 상태를 표시 */}
-          {isLoading ? (
-            <div className="loading">로딩 중...</div>
-          ) : (
-            <Swiper
-              spaceBetween={45}
-              slidesPerView={1}
-              // initialSlide={0} // 첫 번째 슬라이드로 설정
-              loop={true}
-              grabCursor={true}
-              autoplay={{
-                delay: 3000,
-                disableOnInteraction: false,
-              }}
-              pagination={{
-                clickable: true,
-              }}
-              modules={[Autoplay, Navigation]}
-              breakpoints={{
-                1024: {
-                  slidesPerView: 3.5,
-                  spaceBetween: 30,
-                  centeredSlides: true,
-                },
-                436: {
-                  slidesPerView: 2.5,
-                  spaceBetween: 30,
-                  centeredSlides: true,
-                },
-              }}
-            >
-              {products.map((data) => (
-                <SwiperSlide
-                  key={data._id}
-                  onClick={() =>
-                    handleCardClick(data._id, data.name, data.workshop)
-                  }
-                >
-                  <img
-                    className="shareImg"
-                    // 객체-[객체데이터 접근].jpg
-                    src={images[`${data.img[0]}.jpg`]}
-                    alt={data.name}
-                  />
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          )}
+          <Swiper {...swiperConfig} ref={swiperRef}>
+            {isLoading === false
+              ? products.map((data) => (
+                  <SwiperSlide
+                    key={data._id}
+                    onClick={() =>
+                      handleCardClick(data._id, data.name, data.workshop)
+                    }
+                  >
+                    <img
+                      className="shareImg"
+                      src={
+                        isLoading
+                          ? images["loading.gif"]
+                          : images[`${data.img[0]}.jpg`]
+                      }
+                      alt={data.name}
+                    />
+                  </SwiperSlide>
+                ))
+              : skeleton.map((data) => (
+                  <SwiperSlide key={data}>
+                    <Skeleton
+                      width={"100%"}
+                      height={"340px"}
+                      baseColor="#f7e1c7"
+                    />
+                  </SwiperSlide>
+                ))}
+          </Swiper>
         </section>
 
         {/* 선택된 제품에 대해 카드 렌더링 */}

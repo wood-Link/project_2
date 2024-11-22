@@ -1,35 +1,17 @@
-import Swal from "sweetalert2";
 import { ShowAlert, ShowLoading } from "../js/AlertUtils";
 import { useState } from "react";
+import { validateForm } from "../js/validateForm";
+import { execDaumPostcode } from "../js/execDaumPostcode";
+import { handleChange } from "../js/handleChange";
 
 export function Share_link_form({ productInfo }) {
   const [isSending, setIsSending] = useState(false); // 전송 상태 관리
   const [userData, setUserData] = useState({
-    userName: "",
-    userTel: "",
-    street: "",
-    address: "",
+    userName: "", // 받는 사람 이름
+    userTel: "", // 전화번호
+    street: "", // 도로명주소
+    address: "", // 상세주소
   });
-  // 카카오 검색 api 함수
-  const execDaumPostcode = () => {
-    new window.daum.Postcode({
-      oncomplete: function (data) {
-        setUserData((prevData) => ({
-          ...prevData,
-          street: data.roadAddress,
-        }));
-      },
-    }).open();
-  };
-
-  // 폼에서 입력 된 데이터 받아오는 함수
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setUserData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
 
   // 폼 제출 함수
   const handleSubmit = async (e) => {
@@ -37,10 +19,7 @@ export function Share_link_form({ productInfo }) {
     if (isSending) return; // 전송 중에는 다시 제출되지 않도록
 
     // 필수 입력값 확인 함수
-    if (!validateForm()) return;
-
-    // 주소지와 상세주소 입력값 결합
-    const joinAdress = userData.street + userData.address;
+    if (!validateForm(userData)) return;
 
     try {
       setIsSending(true); // 전송 시작
@@ -51,7 +30,7 @@ export function Share_link_form({ productInfo }) {
         phone: userData.userTel, //전화번호
         workshop: productInfo.workshop, // 공방 이름
         product: productInfo.name, // 제품 명
-        address: joinAdress, // 배송 주소
+        address: userData.street + userData.address, // 배송 주소
         url: "www.naver.com", // 테스트용 url
       };
 
@@ -81,23 +60,23 @@ export function Share_link_form({ productInfo }) {
         text={"이름을 입력해주세요."}
         name="userName"
         value={userData.userName}
-        onChange={handleInputChange}
+        onChange={handleChange}
       />
       <Input
         title={"전화번호"}
         text={"전화번호를 입력해주세요."}
         name="userTel"
         value={userData.userTel}
-        onChange={handleInputChange}
+        onChange={handleChange}
       />
       <Input
         title={"도로명주소"}
         text={"도로명주소를 입력해주세요."}
         name="street"
         value={userData.street}
-        onChange={handleInputChange}
+        onChange={handleChange}
         read={true}
-        onClick={execDaumPostcode}
+        onClick={() => execDaumPostcode(setUserData)}
       >
         <button
           className="adressButton"
@@ -112,7 +91,7 @@ export function Share_link_form({ productInfo }) {
         text={"상세주소를 입력해주세요."}
         name="address"
         value={userData.address}
-        onChange={handleInputChange}
+        onChange={() => handleChange(setUserData)}
       />
       <div className="agree">
         <li>개인정보 동의</li>
@@ -158,29 +137,3 @@ function Input({
     </div>
   );
 }
-
-// 유효성 검사 함수
-const validateForm = () => {
-  if (!userData.userName || userData.userName.length < 2) {
-    ShowAlert("info", "알림", "이름은 2글자 이상 입력해 주세요.");
-    return false;
-  }
-  if (!userData.userTel) {
-    ShowAlert("info", "알림", "전화번호를 입력해 주세요.");
-    return false;
-  }
-  const phoneRegex = /^(010|011)[0-9]{8,9}$/;
-  if (!phoneRegex.test(userData.userTel)) {
-    ShowAlert("info", "알림", "올바른 전화번호 형식을 입력해 주세요.");
-    return false;
-  }
-  if (!userData.street) {
-    ShowAlert("info", "알림", "도로명주소를 입력해 주세요.");
-    return false;
-  }
-  if (!userData.address) {
-    ShowAlert("info", "알림", "상세주소를 입력해 주세요.");
-    return false;
-  }
-  return true; // 모든 검증 통과 시 true 반환
-};

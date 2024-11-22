@@ -1,3 +1,4 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Header from "./components/header/Header";
 import Teg from "./components/Teg/Teg";
@@ -9,16 +10,27 @@ import Main from "./components/Main/Main";
 import Delivery from "./components/Delivery/Delivery";
 
 function App() {
+  function WoodLink() {
+    return (
+      <>
+        <Header />
+        <Main />
+        <Teg />
+        <ShareLink />
+        <Review />
+        <Question />
+        <Footer />
+      </>
+    );
+  }
   return (
     <>
-      <Header />
-      <Main />
-      <Teg />
-      <ShareLink />
-      <Review />
-      <Question />
-      <Delivery />
-      <Footer />
+      <Router>
+        <Routes>
+          <Route path="/" element={<WoodLink />} />
+          <Route path="/Delivery/:id" element={<Delivery />} />
+        </Routes>
+      </Router>
     </>
   );
 }
