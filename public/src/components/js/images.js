@@ -43,6 +43,7 @@ const images = {
   "share9_2.jpg": new URL("../../assets/img/share9_2.jpg", import.meta.url),
   "share9_3.jpg": new URL("../../assets/img/share9_3.jpg", import.meta.url),
   "share9_4.jpg": new URL("../../assets/img/share9_4.jpg", import.meta.url),
+  "loading.gif": new URL("../../assets/img/loading.gif", import.meta.url),
 };
 
 export default images;
