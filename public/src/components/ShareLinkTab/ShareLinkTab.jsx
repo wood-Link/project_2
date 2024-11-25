@@ -19,6 +19,7 @@ function ShareLinkTab({
       <section className="ShareLinkTabBox">
         <div className="tabTitleBox">
           <li className="tabTitle">나눔신청</li>
+          <li className="tabTitleSub">"필요한 가구를 나눔받아보세요. 간단히 신청만 하면 됩니다!"</li>
         </div>
         <section className="shareApply">
           {/* 선택된 제품의 카테고리와 ID를 props로 전달 */}

@@ -18,8 +18,8 @@ function App() {
         <Header />
         <Main />
         <Teg />
-        <ShareLink />
         <Review />
+        <ShareLink />
         <Question />
         <Footer />
       </>
