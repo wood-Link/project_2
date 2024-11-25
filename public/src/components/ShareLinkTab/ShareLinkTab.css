@@ -1,5 +1,7 @@
 .ShareLinkTabBoxMom {
-  background-color: #f2edea;
+  background-color: white;
+  max-width: 1920px;
+  width: 100%;
 }
 
 .ShareLinkTabBox {
@@ -19,7 +21,13 @@
   font-weight: bold;
   font-size: 35px;
   text-align: center;
-  padding: 80px 0 80px 0;
+  padding: 80px 0 20px 0;
+}
+
+.tabTitleSub {
+  font-size: 20px;
+  text-align: center;
+  padding-bottom: 50px;
 }
 
 /* 신청란 이미지 파트 */

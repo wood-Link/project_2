@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-
+import "./Review.module.css";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
@@ -48,35 +48,38 @@ function Review() {
   }, [isLoading]);
 
   return (
-    <section className={Style.review_section} id="reviewBox">
-      <div className={Style.title}>후기</div>
-      <div className={Style.swiper_Warp}>
-        <Swiper {...swiperConfig} ref={swiperRef}>
-          {isLoading
-            ? skeleton.map((data, index) => (
-                <SwiperSlide key={index}>
-                  {/* Skeleton 로딩 UI */}
-                  <div className={Style.cardBox}>
-                    <Skeleton width={"100%"} height={265} />
-                    <div className={Style.cardTitle}>
-                      <Skeleton width={150} />
+    <section className={Style.reviewBoxMom}>
+      <section className={Style.review_section} id="reviewBox">
+        <div className={Style.title}>후기</div>
+        <div className={Style.titleSub}>"나눔을 받은 분들의 소중한 후기입니다."</div>
+        <div className={Style.swiper_Warp}>
+          <Swiper {...swiperConfig} ref={swiperRef}>
+            {isLoading
+              ? skeleton.map((data, index) => (
+                  <SwiperSlide key={index}>
+                    {/* Skeleton 로딩 UI */}
+                    <div className={Style.cardBox}>
+                      <Skeleton width={"100%"} height={265} />
+                      <div className={Style.cardTitle}>
+                        <Skeleton width={150} />
+                      </div>
+                      <div className={Style.cardName}>
+                        <Skeleton width={100} />
+                      </div>
+                      <div className={Style.cardReview}>
+                        <Skeleton count={3} />
+                      </div>
                     </div>
-                    <div className={Style.cardName}>
-                      <Skeleton width={100} />
-                    </div>
-                    <div className={Style.cardReview}>
-                      <Skeleton count={3} />
-                    </div>
-                  </div>
-                </SwiperSlide>
-              ))
-            : reviewData.map((data) => (
-                <SwiperSlide key={data._id}>
-                  <Card data={data} />
-                </SwiperSlide>
-              ))}
-        </Swiper>
-      </div>
+                  </SwiperSlide>
+                ))
+              : reviewData.map((data) => (
+                  <SwiperSlide key={data._id}>
+                    <Card data={data} />
+                  </SwiperSlide>
+                ))}
+          </Swiper>
+        </div>
+      </section>
     </section>
   );
 }

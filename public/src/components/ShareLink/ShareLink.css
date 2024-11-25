@@ -1,5 +1,5 @@
 .ShareLinkBoxMom {
-  background-color: #f2edea;
+  background-color: white;
 }
 
 .ShareLinkBox {
@@ -23,6 +23,7 @@
 
 .subTitle {
   font-size: 20px;
+  padding-bottom: 20px;
 }
 
 .tab_item {

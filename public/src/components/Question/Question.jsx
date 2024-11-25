@@ -23,7 +23,7 @@ export default function Question() {
     <div className="question_wrap" id="questionBox">
       <section className="question">
         <div className="question_title">자주묻는 질문</div>
-        <div className="question_text">고객님들께서 자주 물어보시는 내용을 정리했어요</div>
+        <div className="question_text">"고객님들께서 자주 물어보시는 내용을 정리했어요"</div>
         <div className="question_list">
           <div className="question_contents">
             <div className={`question_contents_text ${state[1] ? "text_active" : ""}`} onClick={() => toggle(1)}>

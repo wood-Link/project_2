@@ -28,13 +28,10 @@ function ShareLink() {
     const fetchData = async () => {
       try {
         setIsLoading(true); // 데이터 로딩 시작
-        const response = await fetch(
-          `http://13.236.93.243:8001/api/product/${category}`,
-          {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-          }
-        );
+        const response = await fetch(`http://13.236.93.243:8001/api/product/${category}`, {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+        });
         const result = await response.json(); // 응답을 JSON으로 파싱
         setProducts(result);
         setIsLoading(false); // 데이터 로딩 완료
@@ -73,9 +70,7 @@ function ShareLink() {
       <div className="ShareLinkBox" id="ShareLinkBox">
         <section className="titleBox">
           <li className="title">나눔링크</li>
-          <li className="subTitle">
-            공방 사장님들의 스크래치, 리퍼브 제품들을 나눔해요
-          </li>
+          <li className="subTitle">"공방 사장님들의 스크래치, 리퍼브 제품들을 나눔해요" (나눔 받고싶은 가구를 클릭해주세요.)</li>
         </section>
         <section className="aside">
           <aside>
@@ -93,43 +88,20 @@ function ShareLink() {
           <Swiper {...swiperConfig} ref={swiperRef}>
             {isLoading === false
               ? products.map((data) => (
-                  <SwiperSlide
-                    key={data._id}
-                    onClick={() =>
-                      handleCardClick(data._id, data.name, data.workshop)
-                    }
-                  >
-                    <img
-                      className="shareImg"
-                      src={
-                        isLoading
-                          ? images["loading.gif"]
-                          : images[`${data.img[0]}.jpg`]
-                      }
-                      alt={data.name}
-                    />
+                  <SwiperSlide key={data._id} onClick={() => handleCardClick(data._id, data.name, data.workshop)}>
+                    <img className="shareImg" src={isLoading ? images["loading.gif"] : images[`${data.img[0]}.jpg`]} alt={data.name} />
                   </SwiperSlide>
                 ))
               : skeleton.map((data) => (
                   <SwiperSlide key={data}>
-                    <Skeleton
-                      width={"100%"}
-                      height={"340px"}
-                      baseColor="#f7e1c7"
-                    />
+                    <Skeleton width={"100%"} height={"340px"} baseColor="#f7e1c7" />
                   </SwiperSlide>
                 ))}
           </Swiper>
         </section>
 
         {/* 선택된 제품에 대해 카드 렌더링 */}
-        {selectedProductId && (
-          <ShareLinkTab
-            setSelectedProductId={setSelectedProductId}
-            productInfo={productInfo}
-            category={category}
-          />
-        )}
+        {selectedProductId && <ShareLinkTab setSelectedProductId={setSelectedProductId} productInfo={productInfo} category={category} />}
       </div>
     </main>
   );
