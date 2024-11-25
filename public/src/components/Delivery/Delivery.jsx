@@ -44,25 +44,25 @@ const Delivery = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${API_BASE_URL}/user/${id}`, {
+        const response = await fetch(`${API_BASE_URL}/apply/${id}`, {
           method: "GET",
           headers: { "Content-Type": "application/json" },
         });
         const result = await response.json();
-
+        console.log(result);
         if (result.length < 1) {
           throw new Error("사용자 데이터를 불러올 수 없습니다.");
         }
 
-        const addressData = result[0]?.address || "";
+        const addressData = result[0]?.sendto || "";
         const splitAddress = addressData.split(",").map((part) => part.trim());
 
         const [street, address] =
           splitAddress.length >= 2 ? splitAddress : [addressData, ""];
 
         setUserData({
-          userName: result[0]?.name || "",
-          userTel: result[0]?.phone || "",
+          userName: result[0]?.user.name || "",
+          userTel: result[0]?.user.phone || "",
           street: street,
           address: address,
         });
@@ -76,6 +76,7 @@ const Delivery = () => {
     fetchData();
   }, []);
 
+  // 배송지 수정 함수
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (isSending) return;
@@ -87,14 +88,16 @@ const Delivery = () => {
       ShowLoading("발송 중...");
 
       const data = {
-        name: userData.userName,
-        phone: userData.userTel,
-        address: `${userData.street} ${userData.address}`,
+        id: id,
+        name: userData.userName.trim(),
+        phone: userData.userTel.trim(),
+        address: `${userData.street.trim()} ${userData.address.trim()}`,
         url: "www.naver.com",
       };
       // 현재 유저정보 수정으로 들어감 배송지 주소 수정하는 api가 추가되면 수정
-      const response = await fetch(`${API_BASE_URL}/user/${data.phone}`, {
-        method: "PUT",
+      // body에 유저 id를 넣어서 사용
+      const response = await fetch(`${API_BASE_URL}/apply/change`, {
+        method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });

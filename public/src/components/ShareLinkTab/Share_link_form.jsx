@@ -54,12 +54,12 @@ export function Share_link_form({ productInfo }) {
       ShowLoading("발송 중...");
 
       const data = {
-        name: userData.userName,
-        phone: userData.userTel,
+        name: userData.userName.trim(),
+        phone: userData.userTel.trim(),
         workshop: productInfo.workshop,
         product: productInfo.name,
         productId: productInfo.productId,
-        address: userData.street + userData.address,
+        address: userData.street + userData.address.trim(),
         url: "www.naver.com",
       };
 
@@ -84,14 +84,44 @@ export function Share_link_form({ productInfo }) {
 
   return (
     <form className="shareTabApply" onSubmit={handleSubmit}>
-      <Input title={"이름"} text={"이름을 입력해주세요."} name="userName" value={userData.userName} onChange={handleChange} />
-      <Input title={"전화번호"} text={"전화번호를 입력해주세요."} name="userTel" value={userData.userTel} onChange={handleChange} />
-      <Input title={"도로명주소"} text={"도로명주소를 입력해주세요."} name="street" value={userData.street} onChange={handleChange} read={true} onClick={execDaumPostcode}>
-        <button className="adressButton" type="button" onClick={execDaumPostcode}>
+      <Input
+        title={"이름"}
+        text={"이름을 입력해주세요."}
+        name="userName"
+        value={userData.userName}
+        onChange={handleChange}
+      />
+      <Input
+        title={"전화번호"}
+        text={"전화번호를 입력해주세요."}
+        name="userTel"
+        value={userData.userTel}
+        onChange={handleChange}
+      />
+      <Input
+        title={"도로명주소"}
+        text={"도로명주소를 입력해주세요."}
+        name="street"
+        value={userData.street}
+        onChange={handleChange}
+        read={true}
+        onClick={execDaumPostcode}
+      >
+        <button
+          className="adressButton"
+          type="button"
+          onClick={execDaumPostcode}
+        >
           주소찾기
         </button>
       </Input>
-      <Input title={"상세주소"} text={"상세주소를 입력해주세요."} name="address" value={userData.address} onChange={handleChange} />
+      <Input
+        title={"상세주소"}
+        text={"상세주소를 입력해주세요."}
+        name="address"
+        value={userData.address}
+        onChange={handleChange}
+      />
       <div className="agree">
         <li className="InformationPadding">
           <Information setIsAgreed={setIsPrivacyAgreed} />
@@ -106,7 +136,17 @@ export function Share_link_form({ productInfo }) {
 }
 
 // 인풋태그 컴포넌트는 동일하게 유지
-function Input({ title, text, name, value, onChange, children, id, read, onClick }) {
+function Input({
+  title,
+  text,
+  name,
+  value,
+  onChange,
+  children,
+  id,
+  read,
+  onClick,
+}) {
   return (
     <div className="inputName">
       <div className="postTest">
@@ -114,7 +154,17 @@ function Input({ title, text, name, value, onChange, children, id, read, onClick
         {children}
       </div>
       <div>
-        <input className="inputText" type="text" placeholder={text} name={name} value={value} onChange={onChange} id={id} readOnly={read} onClick={onClick} />
+        <input
+          className="inputText"
+          type="text"
+          placeholder={text}
+          name={name}
+          value={value}
+          onChange={onChange}
+          id={id}
+          readOnly={read}
+          onClick={onClick}
+        />
       </div>
     </div>
   );
