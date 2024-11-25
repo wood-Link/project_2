@@ -10,7 +10,6 @@ export function Share_link_form({ productInfo }) {
     street: "", // 도로명주소
     address: "", // 상세주소
   });
-
   // state에 인풋값 넣는 함수
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -49,6 +48,7 @@ export function Share_link_form({ productInfo }) {
         phone: userData.userTel, //전화번호
         workshop: productInfo.workshop, // 공방 이름
         product: productInfo.name, // 제품 명
+        productId: productInfo.productId, // 제품 ID
         address: userData.street + userData.address, // 배송 주소
         url: "www.naver.com", // 테스트용 url
       };
