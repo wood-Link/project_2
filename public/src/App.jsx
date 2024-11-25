@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Header from "./components/header/Header";
+import Header from "./components/Header/Header";
 import Teg from "./components/Teg/Teg";
 import Review from "./components/Review/Review";
 import Question from "./components/Question/Question";
