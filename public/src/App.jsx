@@ -11,6 +11,8 @@ import Delivery from "./components/Delivery/Delivery";
 
 function App() {
   function WoodLink() {
+    /* 헤더와 푸터가 계속 필요한 사이트를 만들게 된다면 헤더와 푸터는 컴포넌트에 고정하고
+     children으로 페이지 내용만 바뀌게 작성하는게 좋을듯 */
     return (
       <>
         <Header />
