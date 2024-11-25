@@ -1,16 +1,19 @@
 import { ShowAlert, ShowLoading } from "../js/AlertUtils";
 import { useState } from "react";
 import { validateForm } from "../js/validateForm";
+import Information from "../Information/Information";
 
 export function Share_link_form({ productInfo }) {
-  const [isSending, setIsSending] = useState(false); // 전송 상태 관리
+  const [isSending, setIsSending] = useState(false);
+  const [isPrivacyAgreed, setIsPrivacyAgreed] = useState(false);
+  const [showPrivacyWarning, setShowPrivacyWarning] = useState(false);
   const [userData, setUserData] = useState({
-    userName: "", // 받는 사람 이름
-    userTel: "", // 전화번호
-    street: "", // 도로명주소
-    address: "", // 상세주소
+    userName: "",
+    userTel: "",
+    street: "",
+    address: "",
   });
-  // state에 인풋값 넣는 함수
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserData((prev) => ({
@@ -19,7 +22,6 @@ export function Share_link_form({ productInfo }) {
     }));
   };
 
-  // 카카오 검색 api 함수
   const execDaumPostcode = () => {
     new window.daum.Postcode({
       oncomplete: function (data) {
@@ -31,26 +33,33 @@ export function Share_link_form({ productInfo }) {
     }).open();
   };
 
-  // 폼 제출 함수
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isSending) return; // 전송 중에는 다시 제출되지 않도록
 
-    // 필수 입력값 확인 함수
+    // 개인정보 동의 체크 확인
+    if (!isPrivacyAgreed) {
+      setShowPrivacyWarning(true);
+      ShowAlert("warning", "알림", "개인정보 수집에 동의해주세요.");
+      return;
+    }
+    setShowPrivacyWarning(false);
+
+    if (isSending) return;
+
     if (!validateForm(userData)) return;
 
     try {
-      setIsSending(true); // 전송 시작
+      setIsSending(true);
       ShowLoading("발송 중...");
 
       const data = {
-        name: userData.userName, // 고객명
-        phone: userData.userTel, //전화번호
-        workshop: productInfo.workshop, // 공방 이름
-        product: productInfo.name, // 제품 명
-        productId: productInfo.productId, // 제품 ID
-        address: userData.street + userData.address, // 배송 주소
-        url: "www.naver.com", // 테스트용 url
+        name: userData.userName,
+        phone: userData.userTel,
+        workshop: productInfo.workshop,
+        product: productInfo.name,
+        productId: productInfo.productId,
+        address: userData.street + userData.address,
+        url: "www.naver.com",
       };
 
       const response = await fetch("http://13.236.93.243:8001/api/apply", {
@@ -68,52 +77,25 @@ export function Share_link_form({ productInfo }) {
       console.error("Error:", error);
       ShowAlert("error", "실패", "메시지 전송에 실패했습니다.");
     } finally {
-      setIsSending(false); // 전송 완료 후 상태 리셋
+      setIsSending(false);
     }
   };
 
   return (
     <form className="shareTabApply" onSubmit={handleSubmit}>
-      <Input
-        title={"이름"}
-        text={"이름을 입력해주세요."}
-        name="userName"
-        value={userData.userName}
-        onChange={handleChange}
-      />
-      <Input
-        title={"전화번호"}
-        text={"전화번호를 입력해주세요."}
-        name="userTel"
-        value={userData.userTel}
-        onChange={handleChange}
-      />
-      <Input
-        title={"도로명주소"}
-        text={"도로명주소를 입력해주세요."}
-        name="street"
-        value={userData.street}
-        onChange={handleChange}
-        read={true}
-        onClick={execDaumPostcode}
-      >
-        <button
-          className="adressButton"
-          type="button"
-          onClick={execDaumPostcode}
-        >
+      <Input title={"이름"} text={"이름을 입력해주세요."} name="userName" value={userData.userName} onChange={handleChange} />
+      <Input title={"전화번호"} text={"전화번호를 입력해주세요."} name="userTel" value={userData.userTel} onChange={handleChange} />
+      <Input title={"도로명주소"} text={"도로명주소를 입력해주세요."} name="street" value={userData.street} onChange={handleChange} read={true} onClick={execDaumPostcode}>
+        <button className="adressButton" type="button" onClick={execDaumPostcode}>
           주소찾기
         </button>
       </Input>
-      <Input
-        title={"상세주소"}
-        text={"상세주소를 입력해주세요."}
-        name="address"
-        value={userData.address}
-        onChange={handleChange}
-      />
+      <Input title={"상세주소"} text={"상세주소를 입력해주세요."} name="address" value={userData.address} onChange={handleChange} />
       <div className="agree">
-        <li>개인정보 동의</li>
+        <li className="InformationPadding">
+          <Information setIsAgreed={setIsPrivacyAgreed} />
+        </li>
+        {showPrivacyWarning && <div className="privacy-warning"></div>}
         <button className="compum" type="submit" disabled={isSending}>
           {isSending ? "전송 중..." : "신청하기"}
         </button>
@@ -122,18 +104,8 @@ export function Share_link_form({ productInfo }) {
   );
 }
 
-// 인풋태그 컴포넌트
-function Input({
-  title,
-  text,
-  name,
-  value,
-  onChange,
-  children,
-  id,
-  read,
-  onClick,
-}) {
+// 인풋태그 컴포넌트는 동일하게 유지
+function Input({ title, text, name, value, onChange, children, id, read, onClick }) {
   return (
     <div className="inputName">
       <div className="postTest">
@@ -141,17 +113,7 @@ function Input({
         {children}
       </div>
       <div>
-        <input
-          className="inputText"
-          type="text"
-          placeholder={text}
-          name={name}
-          value={value}
-          onChange={onChange}
-          id={id}
-          readOnly={read}
-          onClick={onClick}
-        />
+        <input className="inputText" type="text" placeholder={text} name={name} value={value} onChange={onChange} id={id} readOnly={read} onClick={onClick} />
       </div>
     </div>
   );

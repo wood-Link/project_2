@@ -79,8 +79,8 @@
 
 .shareTabApply {
   width: 42%;
-  height: 730px;
-  padding: 2%;
+  /* height: 730px; */
+  padding: 2% 2% 0 2%;
   box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.1);
   background-color: white;
   border-radius: 10px;
@@ -153,6 +153,10 @@
 .ShareLinkTab.show {
   opacity: 1;
   transform: translateY(0);
+}
+
+.InformationPadding {
+  padding-top: 10px;
 }
 
 /* 테블릿 반응 */
