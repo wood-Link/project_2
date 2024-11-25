@@ -15,7 +15,6 @@ function ShareLink() {
   const [category, setCategory] = useState("desk");
   const [products, setProducts] = useState([]);
   const [selectedProductId, setSelectedProductId] = useState(null);
-  const [cardLoading, setCardLoading] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [productInfo, setProductInfo] = useState({
     productId: "",
@@ -25,6 +24,7 @@ function ShareLink() {
   const skeleton = [1, 2, 3, 4, 5, 6];
   const swiperRef = useRef(null); // swiper 초기화 용도
   const shareLinkTabRef = useRef(null); // ShareLinkTab을 참조하는 ref
+  const topRef = useRef(null); // 페이지 상단을 참조하는 ref
 
   useEffect(() => {
     const fetchData = async () => {
@@ -56,15 +56,26 @@ function ShareLink() {
       swiperRef.current.swiper.autoplay.start();
     }
   }, [isLoading]);
-  // 입력 폼 랜더링 시 화면 이동
+
+  // selectedProductId가 변경될 때마다 화면 이동
   useEffect(() => {
-    if (cardLoading && shareLinkTabRef.current) {
+    if (selectedProductId && shareLinkTabRef.current) {
       shareLinkTabRef.current.scrollIntoView({
         behavior: "smooth",
         block: "start",
       });
     }
-  }, [cardLoading]);
+  }, [selectedProductId]);
+
+  // selectedProductId가 null로 변경될 때 페이지 상단으로 스크롤
+  useEffect(() => {
+    if (selectedProductId === null && topRef.current) {
+      topRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }, [selectedProductId]);
 
   // 제품 이미지 클릭 시 상태 업데이트
   function handleCardClick(productId, product, location) {
@@ -80,10 +91,13 @@ function ShareLink() {
       product,
       location,
     });
-    setCardLoading(true); // 카드 출력 상태로 설정
   }
+
   return (
     <main className="ShareLinkBoxMom">
+      {/* 페이지 상단 참조를 위한 div */}
+      <div ref={topRef} />
+
       <div className="ShareLinkBox" id="ShareLinkBox">
         <section className="titleBox">
           <li className="title">나눔링크</li>
@@ -143,7 +157,6 @@ function ShareLink() {
               setSelectedProductId={setSelectedProductId}
               productInfo={productInfo}
               category={category}
-              setCardLoading={setCardLoading}
             />
           </div>
         )}
