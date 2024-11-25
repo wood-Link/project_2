@@ -3,8 +3,6 @@ import { useParams } from "react-router-dom";
 import { ShowAlert, ShowLoading } from "../js/AlertUtils";
 import { MapPin, Phone, User, Search } from "lucide-react";
 import { validateForm } from "../js/validateForm";
-import { execDaumPostcode } from "../js/execDaumPostcode";
-import { handleChange } from "../js/handleChange";
 import "./Delivery.css";
 
 const API_BASE_URL = "http://13.236.93.243:8001/api";
@@ -21,6 +19,27 @@ const Delivery = () => {
   });
 
   const { id } = useParams();
+
+  // state에 인풋값 넣는 함수
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  // 카카오 검색 api 함수
+  const execDaumPostcode = (setUserData) => {
+    new window.daum.Postcode({
+      oncomplete: function (data) {
+        setUserData((prevData) => ({
+          ...prevData,
+          street: data.roadAddress,
+        }));
+      },
+    }).open();
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -55,7 +74,7 @@ const Delivery = () => {
     };
 
     fetchData();
-  }, [id]);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

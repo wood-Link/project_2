@@ -1,8 +1,6 @@
 import { ShowAlert, ShowLoading } from "../js/AlertUtils";
 import { useState } from "react";
 import { validateForm } from "../js/validateForm";
-import { execDaumPostcode } from "../js/execDaumPostcode";
-import { handleChange } from "../js/handleChange";
 
 export function Share_link_form({ productInfo }) {
   const [isSending, setIsSending] = useState(false); // 전송 상태 관리
@@ -12,6 +10,27 @@ export function Share_link_form({ productInfo }) {
     street: "", // 도로명주소
     address: "", // 상세주소
   });
+
+  // state에 인풋값 넣는 함수
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  // 카카오 검색 api 함수
+  const execDaumPostcode = () => {
+    new window.daum.Postcode({
+      oncomplete: function (data) {
+        setUserData((prevData) => ({
+          ...prevData,
+          street: data.roadAddress,
+        }));
+      },
+    }).open();
+  };
 
   // 폼 제출 함수
   const handleSubmit = async (e) => {
@@ -76,7 +95,7 @@ export function Share_link_form({ productInfo }) {
         value={userData.street}
         onChange={handleChange}
         read={true}
-        onClick={() => execDaumPostcode(setUserData)}
+        onClick={execDaumPostcode}
       >
         <button
           className="adressButton"
@@ -91,7 +110,7 @@ export function Share_link_form({ productInfo }) {
         text={"상세주소를 입력해주세요."}
         name="address"
         value={userData.address}
-        onChange={() => handleChange(setUserData)}
+        onChange={handleChange}
       />
       <div className="agree">
         <li>개인정보 동의</li>
