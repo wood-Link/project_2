@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -5,29 +6,30 @@ import "swiper/css/pagination";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-import { useState, useEffect, useRef } from "react";
 import ShareLinkTab from "../ShareLinkTab/ShareLinkTab.jsx";
 import "./ShareLink.css";
 import images from "../js/images.js";
 import { swiperConfig } from "../js/swiperConfig.js";
 
 function ShareLink() {
-  const [category, setCategory] = useState("desk"); // 카테고리 선택
-  const [products, setProducts] = useState([]); // api 데이터
-  const [selectedProductId, setSelectedProductId] = useState(null); // 선택된 제품 ID
-  const [isLoading, setIsLoading] = useState(true); // 로딩 상태
+  const [category, setCategory] = useState("desk");
+  const [products, setProducts] = useState([]);
+  const [selectedProductId, setSelectedProductId] = useState(null);
+  const [cardLoading, setCardLoading] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [productInfo, setProductInfo] = useState({
     productId: "",
     product: "",
     location: "",
   });
   const skeleton = [1, 2, 3, 4, 5, 6];
-  const swiperRef = useRef(null); // Swiper 인스턴스를 참조
+  const swiperRef = useRef(null); // swiper 초기화 용도
+  const shareLinkTabRef = useRef(null); // ShareLinkTab을 참조하는 ref
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setIsLoading(true); // 데이터 로딩 시작
+        setIsLoading(true);
         const response = await fetch(
           `http://13.236.93.243:8001/api/product/${category}`,
           {
@@ -35,39 +37,51 @@ function ShareLink() {
             headers: { "Content-Type": "application/json" },
           }
         );
-        const result = await response.json(); // 응답을 JSON으로 파싱
+        const result = await response.json();
         setProducts(result);
-        setIsLoading(false); // 데이터 로딩 완료
+        setIsLoading(false);
       } catch (error) {
-        console.error("데이터 요청 실패:", error); // 에러 처리
-        setIsLoading(false); // 데이터 로딩 실패 후에도 종료
+        console.error("데이터 요청 실패:", error);
+        setIsLoading(false);
       }
     };
 
     fetchData();
   }, [category]);
 
-  // isLoading이 변경될 때 Swiper 슬라이드를 갱신
+  // swiper 초기화 함수
   useEffect(() => {
     if (!isLoading && swiperRef.current) {
-      swiperRef.current.swiper.update(); // Swiper 업데이트
-      swiperRef.current.swiper.autoplay.start(); // 자동 슬라이드 시작
+      swiperRef.current.swiper.update();
+      swiperRef.current.swiper.autoplay.start();
     }
   }, [isLoading]);
+  // 입력 폼 랜더링 시 화면 이동
+  useEffect(() => {
+    if (cardLoading && shareLinkTabRef.current) {
+      shareLinkTabRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }, [cardLoading]);
 
-  // 제품 클릭 시 상태 업데이트
+  // 제품 이미지 클릭 시 상태 업데이트
   function handleCardClick(productId, product, location) {
-    setSelectedProductId(
-      (prevState) => (prevState === productId ? null : productId) // 이미 선택된 제품을 다시 클릭하면 닫힘
-    );
-    // 제품의 정보를 state로 저장
-    setProductInfo({
-      productId: productId,
-      product: product,
-      location: location,
-    });
-  }
+    if (selectedProductId === productId) {
+      // 이미 선택된 제품인 경우 화면 이동 방지
+      return;
+    }
 
+    // 새로운 제품 선택 시 상태 업데이트
+    setSelectedProductId(productId);
+    setProductInfo({
+      productId,
+      product,
+      location,
+    });
+    setCardLoading(true); // 카드 출력 상태로 설정
+  }
   return (
     <main className="ShareLinkBoxMom">
       <div className="ShareLinkBox" id="ShareLinkBox">
@@ -124,11 +138,14 @@ function ShareLink() {
 
         {/* 선택된 제품에 대해 카드 렌더링 */}
         {selectedProductId && (
-          <ShareLinkTab
-            setSelectedProductId={setSelectedProductId}
-            productInfo={productInfo}
-            category={category}
-          />
+          <div ref={shareLinkTabRef}>
+            <ShareLinkTab
+              setSelectedProductId={setSelectedProductId}
+              productInfo={productInfo}
+              category={category}
+              setCardLoading={setCardLoading}
+            />
+          </div>
         )}
       </div>
     </main>
