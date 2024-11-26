@@ -10,7 +10,8 @@ import ShareLinkTab from "../ShareLinkTab/ShareLinkTab.jsx";
 import "./ShareLink.css";
 import images from "../js/images.js";
 import { swiperConfig } from "../js/swiperConfig.js";
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+const API_BASE_URL = import.meta.env.VITE_APP_API_BASE_URL;
+console.log(API_BASE_URL);
 function ShareLink() {
   const [category, setCategory] = useState("desk");
   const [products, setProducts] = useState([]);
