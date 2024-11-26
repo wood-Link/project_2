@@ -22,16 +22,16 @@ export function Share_link_form({ productInfo }) {
     }));
   };
 
-  const execDaumPostcode = () => {
-    new window.daum.Postcode({
-      oncomplete: function (data) {
-        setUserData((prevData) => ({
-          ...prevData,
-          street: data.roadAddress,
-        }));
-      },
-    }).open();
-  };
+  // const execDaumPostcode = () => {
+  //   new window.daum.Postcode({
+  //     oncomplete: function (data) {
+  //       setUserData((prevData) => ({
+  //         ...prevData,
+  //         street: data.roadAddress,
+  //       }));
+  //     },
+  //   }).open();
+  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -104,12 +104,12 @@ export function Share_link_form({ productInfo }) {
         value={userData.street}
         onChange={handleChange}
         read={true}
-        onClick={execDaumPostcode}
+        // onClick={execDaumPostcode}
       >
         <button
           className="adressButton"
           type="button"
-          onClick={execDaumPostcode}
+          // onClick={execDaumPostcode}
         >
           주소찾기
         </button>
