@@ -2,7 +2,7 @@ import { ShowAlert, ShowLoading } from "../js/AlertUtils";
 import { useState } from "react";
 import { validateForm } from "../js/validateForm";
 import Information from "../Information/Information";
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+const API_BASE_URL = import.meta.env.VITE_APP_API_BASE_URL;
 export function Share_link_form({ productInfo }) {
   const [isSending, setIsSending] = useState(false);
   const [isPrivacyAgreed, setIsPrivacyAgreed] = useState(false);

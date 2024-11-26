@@ -8,7 +8,7 @@ import { Autoplay, Navigation } from "swiper/modules";
 
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+const API_BASE_URL = import.meta.env.VITE_APP_API_BASE_URL;
 export function Share_link_card({ category, productId }) {
   const [product, setProduct] = useState(null); // 선택된 제품 정보 상태 저장
   const [isLoading, setIsLoading] = useState(true); // 로딩 상태

@@ -12,7 +12,7 @@ import images from "../js/images.js";
 import { swiperConfig } from "../js/swiperConfig.js";
 import { useState, useEffect, useRef } from "react";
 
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+const API_BASE_URL = import.meta.env.VITE_APP_API_BASE_URL;
 function Review() {
   const [reviewData, setReviewData] = useState([]); // api 데이터
   const [isLoading, setIsLoading] = useState(true); // 로딩 상태
@@ -29,6 +29,9 @@ function Review() {
           headers: { "Content-Type": "application/json" },
         });
         const result = await response.json(); // 응답을 JSON으로 파싱
+        if (result.length < 1) {
+          console.log("데이터가 없습니다");
+        }
         setReviewData(result);
         setIsLoading(false); // 데이터 로딩 완료
       } catch (error) {
