@@ -63,6 +63,7 @@ function ShareLink() {
         behavior: "smooth",
         block: "start",
       });
+      console.log(selectedProductId);
     }
   }, [selectedProductId]);
 
