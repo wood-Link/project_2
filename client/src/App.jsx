@@ -6,7 +6,7 @@ import Review from "./components/Review/Review";
 import Question from "./components/Question/Question";
 import Footer from "./components/Footer/Footer";
 import ShareLink from "./components/ShareLink/ShareLink";
-import Main from "./components/Main/Main";
+import Mainsec from "./components/Mainsec/Mainsec";
 import Delivery from "./components/Delivery/Delivery";
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
     return (
       <>
         <Header />
-        <Main />
+        <Mainsec />
         <Teg />
         <Review />
         <ShareLink />

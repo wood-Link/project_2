@@ -1,4 +1,4 @@
-import "./Main.css";
+import "./Mainsec.css";
 import main1 from "../../assets/img/main_img1.jpg";
 import main2 from "../../assets/img/main_img2.jpg";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -21,14 +21,18 @@ function Main() {
         modules={[Autoplay]}
       >
         <SwiperSlide>
-          <div className="mainImg">{<img className="tabImg" src={main1}></img>}</div>
+          <div className="mainImg">
+            {<img className="tabImg" src={main1}></img>}
+          </div>
           <div className="mainText" id="mainText1">
             실용성 있는 원목가구를
             <br /> 나눔 받고 싶으신가요?
           </div>
         </SwiperSlide>
         <SwiperSlide>
-          <div className="mainImg">{<img className="tabImg" src={main2}></img>}</div>
+          <div className="mainImg">
+            {<img className="tabImg" src={main2}></img>}
+          </div>
           <div className="mainText" id="mainText3">
             버려지는 가구들을 나눔받아
             <br /> 환경보호에 기여하고 싶지 않으신가요?
