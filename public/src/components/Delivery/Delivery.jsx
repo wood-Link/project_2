@@ -5,7 +5,7 @@ import { MapPin, Phone, User, Search } from "lucide-react";
 import { validateForm } from "../js/validateForm";
 import "./Delivery.css";
 
-const API_BASE_URL = "http://13.236.93.243:8001/api";
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 const Delivery = () => {
   const [isSending, setIsSending] = useState(false);
