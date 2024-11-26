@@ -2,6 +2,8 @@ import { ShowAlert, ShowLoading } from "../js/AlertUtils";
 import { useState } from "react";
 import { validateForm } from "../js/validateForm";
 import Information from "../Information/Information";
+import Modal from "../Modal/Modal";
+import DaumPostcodeEmbed from "react-daum-postcode";
 const API_BASE_URL = import.meta.env.VITE_APP_API_BASE_URL;
 export function Share_link_form({ productInfo }) {
   const [isSending, setIsSending] = useState(false);
@@ -13,6 +15,11 @@ export function Share_link_form({ productInfo }) {
     street: "",
     address: "",
   });
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  // 모달 토글 함수
+  const toggleModal = () => {
+    setIsModalOpen((prev) => !prev);
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,17 +28,6 @@ export function Share_link_form({ productInfo }) {
       [name]: value,
     }));
   };
-
-  // const execDaumPostcode = () => {
-  //   new window.daum.Postcode({
-  //     oncomplete: function (data) {
-  //       setUserData((prevData) => ({
-  //         ...prevData,
-  //         street: data.roadAddress,
-  //       }));
-  //     },
-  //   }).open();
-  // };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -104,13 +100,9 @@ export function Share_link_form({ productInfo }) {
         value={userData.street}
         onChange={handleChange}
         read={true}
-        // onClick={execDaumPostcode}
+        onClick={toggleModal}
       >
-        <button
-          className="adressButton"
-          type="button"
-          // onClick={execDaumPostcode}
-        >
+        <button className="adressButton" type="button" onClick={toggleModal}>
           주소찾기
         </button>
       </Input>
@@ -130,6 +122,18 @@ export function Share_link_form({ productInfo }) {
           {isSending ? "전송 중..." : "신청하기"}
         </button>
       </div>
+      <Modal toggleModal={toggleModal} isModalOpen={isModalOpen}>
+        <DaumPostcodeEmbed
+          onComplete={(data) => {
+            // 선택된 도로명 주소를 userData에 저장
+            setUserData((prev) => ({
+              ...prev,
+              street: data.roadAddress, // 도로명 주소
+            }));
+            toggleModal(); // 주소 선택 후 모달 닫기
+          }}
+        />
+      </Modal>
     </form>
   );
 }

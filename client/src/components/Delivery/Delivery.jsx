@@ -4,7 +4,8 @@ import { ShowAlert, ShowLoading } from "../js/AlertUtils";
 import { MapPin, Phone, User, Search } from "lucide-react";
 import { validateForm } from "../js/validateForm";
 import "./Delivery.css";
-
+import Modal from "../Modal/Modal";
+import DaumPostcodeEmbed from "react-daum-postcode";
 const API_BASE_URL = import.meta.env.VITE_APP_API_BASE_URL;
 
 const Delivery = () => {
@@ -17,6 +18,11 @@ const Delivery = () => {
     street: "",
     address: "",
   });
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  // 모달 토글 함수
+  const toggleModal = () => {
+    setIsModalOpen((prev) => !prev);
+  };
 
   const { id } = useParams();
 
@@ -27,18 +33,6 @@ const Delivery = () => {
       ...prev,
       [name]: value,
     }));
-  };
-
-  // 카카오 검색 api 함수
-  const execDaumPostcode = (setUserData) => {
-    new window.daum.Postcode({
-      oncomplete: function (data) {
-        setUserData((prevData) => ({
-          ...prevData,
-          street: data.roadAddress,
-        }));
-      },
-    }).open();
   };
 
   useEffect(() => {
@@ -167,29 +161,35 @@ const Delivery = () => {
             />
           </div>
 
-          <div className="address-search-section">
-            <div className="input-with-icon">
-              <MapPin />
-              <button
-                type="button"
-                className="address-search-button"
-                onClick={() => execDaumPostcode(setUserData)}
-              >
-                <Search /> 우편번호 찾기
-              </button>
-            </div>
+          <div className="input-with-icon">
+            <MapPin />
+            <button
+              type="button"
+              className="address-search-button"
+              onClick={toggleModal}
+            >
+              <Search /> 주소 찾기
+            </button>
+          </div>
+          <div className="input-with-icon">
+            <MapPin style={{ visibility: "hidden" }} />
+
             <input
-              className="inputBox inputSize"
+              className=" inputSize"
               type="text"
               name="street"
               value={userData.street}
               onChange={handleChange}
               placeholder="주소 (도로명)"
               readOnly
-              onClick={() => execDaumPostcode(setUserData)}
+              onClick={toggleModal}
             />
+          </div>
+          <div className="input-with-icon">
+            <MapPin style={{ visibility: "hidden" }} />
+
             <input
-              className="inputBox inputSize"
+              className=" inputSize"
               type="text"
               name="address"
               value={userData.address}
@@ -216,6 +216,18 @@ const Delivery = () => {
               배송지 수정
             </button>
           </div>
+          <Modal toggleModal={toggleModal} isModalOpen={isModalOpen}>
+            <DaumPostcodeEmbed
+              onComplete={(data) => {
+                // 선택된 도로명 주소를 userData에 저장
+                setUserData((prev) => ({
+                  ...prev,
+                  street: data.roadAddress, // 도로명 주소
+                }));
+                toggleModal(); // 주소 선택 후 모달 닫기
+              }}
+            />
+          </Modal>
         </form>
       </div>
     </div>
