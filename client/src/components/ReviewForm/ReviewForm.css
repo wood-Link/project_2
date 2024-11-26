@@ -1,0 +1,78 @@
+/* 페이지에 폼만 작게 출력 */
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* 화면 전체 높이 */
+  background-color: #f7f7f7;
+}
+
+.review-form {
+  width: 100%;
+  max-width: 400px; /* 폼 너비 제한 */
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.review-input {
+  margin-bottom: 15px;
+}
+
+.review-input label {
+  font-size: 16px;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.review-input textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: none;
+}
+
+.image-upload {
+  margin-bottom: 20px;
+}
+
+.image-upload label {
+  font-size: 16px;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.image-upload input {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.image-preview {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.image-preview img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.submit-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.submit-btn:hover {
+  background-color: #0056b3;
+}

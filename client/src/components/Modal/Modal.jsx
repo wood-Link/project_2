@@ -1,14 +1,14 @@
 // Modal.jsx
 import React from "react";
-import "./Modal.css";
+import styles from "./Modal.module.css"; // CSS 모듈을 가져옵니다.
 
 const Modal = ({ isModalOpen, toggleModal, children }) => {
   if (!isModalOpen) return null;
 
   return (
-    <div className="modal-overlay" onClick={toggleModal}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <button className="modal-close" onClick={toggleModal}>
+    <div className={styles.modalOverlay} onClick={toggleModal}>
+      <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+        <button className={styles.modalClose} onClick={toggleModal}>
           X
         </button>
         <div>{children}</div>
