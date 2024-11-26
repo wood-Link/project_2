@@ -8,7 +8,6 @@ import "react-loading-skeleton/dist/skeleton.css";
 import "./Swiper.css";
 import Style from "./Review.module.css";
 import Card from "./Review_Card.jsx";
-import images from "../js/images.js";
 import { swiperConfig } from "../js/swiperConfig.js";
 import { useState, useEffect, useRef } from "react";
 
