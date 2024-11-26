@@ -12,6 +12,7 @@ import images from "../js/images.js";
 import { swiperConfig } from "../js/swiperConfig.js";
 import { useState, useEffect, useRef } from "react";
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 function Review() {
   const [reviewData, setReviewData] = useState([]); // api 데이터
   const [isLoading, setIsLoading] = useState(true); // 로딩 상태
@@ -23,7 +24,7 @@ function Review() {
     const fetchData = async () => {
       try {
         setIsLoading(true); // 데이터 로딩 시작
-        const response = await fetch(`http://13.236.93.243:8001/api/review/`, {
+        const response = await fetch(`${API_BASE_URL}/review/`, {
           method: "GET",
           headers: { "Content-Type": "application/json" },
         });
@@ -51,7 +52,9 @@ function Review() {
     <section className={Style.reviewBoxMom}>
       <section className={Style.review_section} id="reviewBox">
         <div className={Style.title}>후기</div>
-        <div className={Style.titleSub}>"나눔을 받은 분들의 소중한 후기입니다."</div>
+        <div className={Style.titleSub}>
+          "나눔을 받은 분들의 소중한 후기입니다."
+        </div>
         <div className={Style.swiper_Warp}>
           <Swiper {...swiperConfig} ref={swiperRef}>
             {isLoading

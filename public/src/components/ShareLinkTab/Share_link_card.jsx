@@ -8,7 +8,7 @@ import { Autoplay, Navigation } from "swiper/modules";
 
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 export function Share_link_card({ category, productId }) {
   const [product, setProduct] = useState(null); // 선택된 제품 정보 상태 저장
   const [isLoading, setIsLoading] = useState(true); // 로딩 상태
@@ -20,13 +20,10 @@ export function Share_link_card({ category, productId }) {
     const fetchData = async () => {
       try {
         setIsLoading(true); // 데이터 로딩 시작
-        const response = await fetch(
-          `http://13.236.93.243:8001/api/product/${category}`,
-          {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-          }
-        );
+        const response = await fetch(`${API_BASE_URL}/product/${category}`, {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+        });
         const result = await response.json(); // 응답을 JSON으로 파싱
         // console.log(result); // 결과 출력
 

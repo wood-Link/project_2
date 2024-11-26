@@ -2,7 +2,7 @@ import { ShowAlert, ShowLoading } from "../js/AlertUtils";
 import { useState } from "react";
 import { validateForm } from "../js/validateForm";
 import Information from "../Information/Information";
-
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 export function Share_link_form({ productInfo }) {
   const [isSending, setIsSending] = useState(false);
   const [isPrivacyAgreed, setIsPrivacyAgreed] = useState(false);
@@ -62,7 +62,7 @@ export function Share_link_form({ productInfo }) {
         url: "www.naver.com",
       };
 
-      const response = await fetch("http://13.236.93.243:8001/api/apply", {
+      const response = await fetch(`${API_BASE_URL}/api/apply`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
