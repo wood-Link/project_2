@@ -8,9 +8,14 @@ export default defineConfig({
     rollupOptions: {
       output: {
         format: "es",
-        entryFileNames: "[name].js",
-        chunkFileNames: "chunks/[name].[hash].js",
+        entryFileNames: "assets/[name].[hash].js",
+        chunkFileNames: "assets/[name].[hash].js",
+        assetFileNames: "assets/[name].[hash][extname]",
       },
     },
+  },
+  base: "/",
+  server: {
+    historyApiFallback: true,
   },
 });
