@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react"; // useState, useEffect ì¶”ê
 import images from "../js/images.js";
 // Swiper
 import { Swiper, SwiperSlide } from "swiper/react";
-import "Swiper/css";
+import "swiper/css";
 import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper/modules";
 
