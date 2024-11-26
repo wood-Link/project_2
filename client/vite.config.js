@@ -5,6 +5,7 @@ import fs from "fs/promises";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: "/",
   resolve: {
     alias: {
       src: resolve(__dirname, "src"),
