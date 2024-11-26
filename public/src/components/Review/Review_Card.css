@@ -2,6 +2,8 @@
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.05);
   border-radius: 10px;
   background-color: white;
+  height: auto;
+  padding-bottom: 10px;
 }
 
 .cardBox {
@@ -30,5 +32,9 @@
 }
 
 .review_card_review {
-  padding-bottom: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }

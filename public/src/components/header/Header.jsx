@@ -13,10 +13,10 @@ function Header() {
               <a href="#mainBox">메인</a>
             </div>
             <div className="subTitleBox">
-              <a href="#ShareLinkBox">나눔링크</a>
+              <a href="#reviewBox"> 후기</a>
             </div>
             <div className="subTitleBox">
-              <a href="#reviewBox"> 후기</a>
+              <a href="#ShareLinkBox">나눔링크</a>
             </div>
             <div className="subTitleBox">
               <a href="#questionBox">질문</a>
