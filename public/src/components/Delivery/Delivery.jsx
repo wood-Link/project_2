@@ -57,8 +57,7 @@ const Delivery = () => {
         const addressData = result[0]?.sendto || "";
         const splitAddress = addressData.split(",").map((part) => part.trim());
 
-        const [street, address] =
-          splitAddress.length >= 2 ? splitAddress : [addressData, ""];
+        const [street, address] = splitAddress.length >= 2 ? splitAddress : [addressData, ""];
 
         setUserData({
           userName: result[0]?.user.name || "",
@@ -102,17 +101,12 @@ const Delivery = () => {
         body: JSON.stringify(data),
       });
 
-      if (!response.ok)
-        throw new Error("서버로 데이터를 전송하는 데 실패했습니다.");
+      if (!response.ok) throw new Error("서버로 데이터를 전송하는 데 실패했습니다.");
 
       const result = await response.json();
       ShowAlert("success", "성공", "메시지가 성공적으로 전송되었습니다.");
     } catch (error) {
-      ShowAlert(
-        "error",
-        "실패",
-        error.message || "메시지 전송에 실패했습니다."
-      );
+      ShowAlert("error", "실패", error.message || "메시지 전송에 실패했습니다.");
     } finally {
       setIsSending(false);
     }
@@ -156,59 +150,23 @@ const Delivery = () => {
         <form onSubmit={handleSubmit} className="shipping-address-form">
           <div className="input-with-icon">
             <User />
-            <input
-              type="text"
-              name="userName"
-              className="inputSize"
-              value={userData.userName}
-              onChange={handleChange}
-              placeholder="받는 사람"
-              maxLength={40}
-            />
+            <input type="text" name="userName" className="inputSize" value={userData.userName} onChange={handleChange} placeholder="받는 사람" maxLength={40} />
           </div>
 
           <div className="address-search-section">
             <div className="input-with-icon">
               <MapPin />
-              <button
-                type="button"
-                className="address-search-button"
-                onClick={() => execDaumPostcode(setUserData)}
-              >
+              <button type="button" className="address-search-button" onClick={() => execDaumPostcode(setUserData)}>
                 <Search /> 우편번호 찾기
               </button>
             </div>
-            <input
-              className="inputBox inputSize"
-              type="text"
-              name="street"
-              value={userData.street}
-              onChange={handleChange}
-              placeholder="주소 (도로명)"
-              readOnly
-              onClick={() => execDaumPostcode(setUserData)}
-            />
-            <input
-              className="inputBox inputSize"
-              type="text"
-              name="address"
-              value={userData.address}
-              onChange={handleChange}
-              placeholder="상세주소"
-              maxLength={150}
-            />
+            <input className="inputBox inputSize" type="text" name="street" value={userData.street} onChange={handleChange} placeholder="주소 (도로명)" readOnly onClick={() => execDaumPostcode(setUserData)} />
+            <input className="inputBox inputSize" type="text" name="address" value={userData.address} onChange={handleChange} placeholder="상세주소" maxLength={150} />
           </div>
 
           <div className="input-with-icon">
             <Phone />
-            <input
-              type="tel"
-              name="userTel"
-              className="inputSize"
-              value={userData.userTel}
-              onChange={handleChange}
-              placeholder="휴대폰 번호"
-            />
+            <input type="tel" name="userTel" className="inputSize" value={userData.userTel} onChange={handleChange} placeholder="휴대폰 번호" />
           </div>
 
           <div className="button-group">
