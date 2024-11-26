@@ -18,7 +18,7 @@ function Header() {
             <div className="subTitleBox">
               <a href="#reviewBox"> 후기</a>
             </div>
-            <div className="subTitleBox">
+            <div className="subTitleBox aaa">
               <a href="#questionBox">질문</a>
             </div>
           </div>
