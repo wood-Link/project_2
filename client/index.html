@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>우드링크</title>
+
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+
+    <!-- top버튼 만들기 -->
+    <!-- 위로 가기 버튼 -->
+    <button id="topBtn a" onclick="topFunction()">TOP</button>
+
+    <script src="script.js"></script>
+  </body>
+  <style>
+    #topBtn {
+      position: fixed;
+      bottom: 60px; /* 화면 아래 20px */
+      right: 100px; /* 화면 오른쪽 20px */
+      background-color: #007bff; /* 파란색 배경 */
+      color: white; /* 텍스트 색상 */
+      border: none; /* 테두리 없음 */
+      border-radius: 5px; /* 둥근 모서리 */
+      padding: 10px 20px; /* 버튼 크기 */
+      font-size: 16px;
+      display: none; /* 처음에는 보이지 않게 설정 */
+      cursor: pointer; /* 마우스 커서 모양 변경 */
+    }
+
+    #topBtn:hover {
+      background-color: #0056b3; /* 버튼 호버시 색상 변경 */
+    }
+  </style>
+
+  <script>
+    let mybutton = document.getElementById("topBtn");
+
+    // 페이지 스크롤이 100px 이상 내려가면 버튼을 보이게 하고, 그렇지 않으면 숨깁니다.
+    window.onscroll = function () {
+      if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        mybutton.style.display = "block"; // 버튼 표시
+      } else {
+        mybutton.style.display = "none"; // 버튼 숨기기
+      }
+    };
+
+    // 버튼 클릭 시 맨 위로 스크롤
+    function topFunction() {
+      document.body.scrollTop = 0; // Safari
+      document.documentElement.scrollTop = 0; // Chrome, Firefox, IE, Opera
+    }
+
+    function topFunction() {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth", // 부드러운 스크롤
+      });
+    }
+  </script>
+</html>

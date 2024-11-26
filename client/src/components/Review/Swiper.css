@@ -1,0 +1,11 @@
+.swiper-slid {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 12px 15px 18px 15px;
+  border: 1px solid #f0f0f0;
+  background-color: white;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.07);
+  border-radius: 25px;
+}

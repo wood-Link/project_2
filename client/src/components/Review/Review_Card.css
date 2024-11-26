@@ -1,0 +1,40 @@
+.review_card {
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  background-color: white;
+  height: auto;
+  padding-bottom: 10px;
+}
+
+.cardBox {
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.review_card_inner {
+  width: 100%;
+  margin-bottom: 18px;
+}
+
+.review_card_img {
+  width: 100%;
+  height: 225px;
+  object-fit: cover;
+  padding-top: 10px;
+}
+.review_card_title {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #a4a4a4;
+}
+.review_card_name {
+  margin-top: 18px;
+  margin-bottom: 12px;
+}
+
+.review_card_review {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}

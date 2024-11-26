@@ -1,0 +1,33 @@
+@font-face {
+  font-family: "yg-jalnan";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff") format("woff");
+  /* font-weight: normal; */
+  font-style: normal;
+}
+
+.footerBox {
+  height: 150px;
+  text-align: center; /* 가로 가운데 정렬 */
+  align-content: center; /*세로 가운데 정렬 */
+}
+
+.footerTitle {
+  font-size: 30px;
+  font-family: "yg-jalnan";
+  color: #8b634b;
+}
+
+.subFooterTitle {
+  font-size: 14px;
+}
+
+.footerCopyright {
+  padding: 15px 20px;
+  background-color: #333;
+  text-align: center;
+}
+
+.footerCopyright li {
+  font-size: 14px;
+  color: white;
+}

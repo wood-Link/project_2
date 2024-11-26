@@ -1,0 +1,128 @@
+.question_wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: #f2edea;
+}
+.question {
+  width: 1200px;
+  padding: 80px 12px;
+  background-color: #f2edea;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.question_title {
+  font-size: 35px;
+  font-weight: bold;
+  margin-bottom: 32px;
+}
+
+.question_text {
+  font-size: 20px;
+  margin-bottom: 50px;
+}
+
+.question_list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.question_contents {
+  padding: 20px 35px;
+  border-radius: 15px;
+  background-color: white;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.07);
+  text-align: left;
+  margin: auto 0;
+  padding: 20px;
+}
+.question_contents:hover {
+  cursor: pointer;
+}
+
+.question_contents_text {
+  font-size: 22px;
+  text-align: left;
+  /* padding: 0 0 5px 0; */
+}
+
+.arrow {
+  /* transform: translateY(0%); */
+  float: right;
+  display: block; /* 기본적으로 보이도록 설정 */
+}
+
+.arrow2 {
+  transform: translateY(18%);
+  float: right;
+  display: none; /* 기본적으로 숨김 */
+}
+
+/* 질문이 펼쳐졌을 때 arrow2가 보이도록 */
+.text_active .arrow {
+  display: none; /* 펼쳐졌을 때 arrow 숨김 */
+}
+
+.text_active .arrow2 {
+  display: inline; /* 펼쳐졌을 때 arrow2 보이도록 */
+}
+
+.question_contents_text_hidden p {
+  margin: 10px 0;
+}
+
+.question_contents_text_hidden {
+  max-height: 0; /* 초기에는 높이를 0으로 설정하여 숨김 */
+  overflow: hidden; /* 콘텐츠가 넘치지 않도록 숨김 */
+  opacity: 0; /* 초기 투명도는 0으로 설정 */
+  transition: max-height 0.5s ease, opacity 0.5s ease; /* 높이와 투명도에 애니메이션 효과 적용 */
+  font-weight: 350;
+}
+
+.text_active {
+  max-height: 500px; /* 펼쳐졌을 때 충분한 높이를 설정 (컨텐츠가 커지면 적절하게 조정) */
+  opacity: 1; /* 펼쳐졌을 때 투명도를 1로 설정 */
+}
+
+/* 테블릿 버전 */
+@media (max-width: 1024px) {
+  .question_list {
+    gap: 20px;
+  }
+
+  .question_contents {
+    padding: 20px 20px;
+  }
+
+  .question_contents_text {
+    font-size: 20px;
+  }
+
+  .arrow {
+    transform: translateY(0%);
+  }
+}
+
+/* 모바일 버전 */
+@media (max-width: 436px) {
+  .question_contents {
+    padding: 15px 17px;
+  }
+
+  .question_contents_text {
+    font-size: 15px;
+    margin-top: 5px;
+  }
+
+  .arrow {
+    transform: translateY(-10%);
+    right: 30px;
+  }
+
+  p {
+    font-size: 15px;
+  }
+}

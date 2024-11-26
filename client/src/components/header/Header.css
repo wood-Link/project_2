@@ -1,0 +1,97 @@
+body {
+  padding-top: 80px; /* headerBox의 높이만큼 여백 추가 */
+}
+
+a {
+  text-decoration: none; /* 밑줄 제거 */
+  color: inherit; /* 기본 텍스트 색상 사용 */
+}
+
+@font-face {
+  font-family: "yg-jalnan";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff") format("woff");
+  /* font-weight: normal; */
+  font-style: normal;
+}
+
+.headerBox {
+  height: 80px;
+  justify-content: space-between;
+  display: flex;
+  width: 100%;
+  position: fixed; /* 화면 상단에 고정 */
+  top: 0; /* 상단에 위치 */
+  left: 0; /* 왼쪽에 위치 */
+  z-index: 1000; /* 다른 요소들보다 위에 표시되도록 설정 (선택적) */
+  background-color: white; /* 배경 색을 설정해서 다른 요소가 뒤에 보이지 않도록 할 수 있음 */
+  opacity: 0.9;
+  backdrop-filter: blur(30px);
+}
+
+.headerTitle {
+  font-family: "yg-jalnan";
+  padding-left: 14%;
+  align-content: center; /* 세로 가운데 정렬 */
+  font-size: 45px;
+  color: #8b634b;
+}
+
+.headAside {
+  align-content: center;
+  margin-right: 10%;
+}
+
+.headerSubTitle {
+  display: flex;
+}
+
+.headerSubTitle div:nth-of-type(4) {
+  border: none;
+}
+
+.subTitleBox {
+  border-right: 1px solid black;
+  padding: 0px 10px;
+  font-size: 20px;
+  line-height: 25px;
+}
+
+/* 테블릿 반응 */
+@media (max-width: 768px) {
+  body {
+    padding-top: 80px; /* headerBox의 높이만큼 여백 추가 */
+  }
+
+  .headerBox {
+    height: 80px;
+  }
+
+  .headerTitle {
+    font-size: 30px;
+    padding-left: 5%;
+  }
+
+  .subTitleBox {
+    font-size: 18px;
+  }
+}
+
+/* 모바일 버전 */
+@media (max-width: 436px) {
+  body {
+    padding-top: 60px; /* headerBox의 높이만큼 여백 추가 */
+  }
+
+  .headerBox {
+    height: 60px;
+  }
+
+  .headerTitle {
+    font-size: 22px;
+    padding-left: 3%;
+  }
+
+  .subTitleBox {
+    font-size: 15px;
+  }
+}
