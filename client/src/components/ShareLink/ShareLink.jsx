@@ -15,7 +15,7 @@ console.log(API_BASE_URL);
 function ShareLink() {
   const [category, setCategory] = useState("desk");
   const [products, setProducts] = useState([]);
-  const [selectedProductId, setSelectedProductId] = useState(null);
+  const [selectedProductId, setSelectedProductId] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [productInfo, setProductInfo] = useState({
     productId: "",
