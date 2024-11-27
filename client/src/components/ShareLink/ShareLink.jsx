@@ -11,7 +11,7 @@ import "./ShareLink.css";
 import images from "../js/images.js";
 import { swiperConfig } from "../js/swiperConfig.js";
 const API_BASE_URL = import.meta.env.VITE_APP_API_BASE_URL;
-console.log(API_BASE_URL);
+
 function ShareLink() {
   const [category, setCategory] = useState("desk");
   const [products, setProducts] = useState([]);
@@ -48,13 +48,23 @@ function ShareLink() {
     fetchData();
   }, [category]);
 
-  // swiper 초기화 함수
-  useEffect(() => {
-    if (!isLoading && swiperRef.current) {
-      swiperRef.current.swiper.update();
-      swiperRef.current.swiper.autoplay.start();
+  // autoplay 상태를 다루는 함수
+  const handleAutoplay = () => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      if (selectedProductId) {
+        swiperRef.current.swiper.autoplay.stop();
+      } else {
+        swiperRef.current.swiper.autoplay.start();
+      }
     }
-  }, [isLoading]);
+  };
+
+  // swiper 초기화 후 자동 슬라이드 상태 설정
+  useEffect(() => {
+    if (swiperRef.current && !isLoading) {
+      handleAutoplay(); // 슬라이드 상태에 맞게 autoplay 처리
+    }
+  }, [isLoading, selectedProductId]); // isLoading과 selectedProductId 값에 의존
 
   // selectedProductId가 변경될 때마다 화면 이동
   useEffect(() => {
@@ -63,7 +73,6 @@ function ShareLink() {
         behavior: "smooth",
         block: "start",
       });
-      console.log(selectedProductId);
     }
   }, [selectedProductId]);
 
@@ -95,9 +104,7 @@ function ShareLink() {
 
   return (
     <main className="ShareLinkBoxMom">
-      {/* 페이지 상단 참조를 위한 div */}
       <div ref={topRef} />
-
       <div className="ShareLinkBox" id="ShareLinkBox">
         <section className="titleBox">
           <li className="title">나눔링크</li>
@@ -152,7 +159,6 @@ function ShareLink() {
         </section>
 
         {/* 선택된 제품에 대해 카드 렌더링 */}
-
         {selectedProductId && (
           <div ref={shareLinkTabRef}>
             <ShareLinkTab
