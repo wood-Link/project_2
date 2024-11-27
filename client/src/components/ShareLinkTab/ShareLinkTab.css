@@ -10,7 +10,10 @@
   margin: 0 auto;
   /* padding: 80px; */
 }
-
+#ShareLinkBox .swiper-button-next,
+.swiper-button-prev {
+  display: block;
+}
 .shareApply {
   display: flex;
   justify-content: space-between;

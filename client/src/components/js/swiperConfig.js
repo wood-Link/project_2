@@ -10,9 +10,9 @@ export const swiperConfig = {
     disableOnInteraction: false,
   },
   pagination: {
-    clickable: true,
+    // clickable: true,
   },
-  grabCursor: true,
+  // grabCursor: true,
   modules: [Autoplay],
   breakpoints: {
     1024: {

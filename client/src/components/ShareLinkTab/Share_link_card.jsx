@@ -53,7 +53,7 @@ export function Share_link_card({ category, productId }) {
         slidesPerView={1}
         initialSlide={0} // 첫 번째 슬라이드로 설정
         loop={true}
-        grabCursor={true}
+        // grabCursor={true}
         navigation={true}
         pagination={{
           clickable: true,
