@@ -17,6 +17,7 @@ const Delivery = () => {
     userTel: "",
     street: "",
     address: "",
+    detailedAddress: "",
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
   // 모달 토글 함수
@@ -49,7 +50,7 @@ const Delivery = () => {
         }
 
         const addressData = result[0]?.sendto || "";
-        const splitAddress = addressData.split(",").map((part) => part.trim());
+        const splitAddress = addressData.split(", ").map((part) => part.trim());
 
         const [street, address] =
           splitAddress.length >= 2 ? splitAddress : [addressData, ""];
@@ -85,7 +86,8 @@ const Delivery = () => {
         id: id,
         name: userData.userName.trim(),
         phone: userData.userTel.trim(),
-        address: `${userData.street.trim()} ${userData.address.trim()}`,
+        address: `${userData.street.trim()}`,
+        detailedAddress: ` ${userData.address.trim()}`,
         url: "www.naver.com",
       };
       // 현재 유저정보 수정으로 들어감 배송지 주소 수정하는 api가 추가되면 수정
@@ -100,12 +102,12 @@ const Delivery = () => {
         throw new Error("서버로 데이터를 전송하는 데 실패했습니다.");
 
       const result = await response.json();
-      ShowAlert("success", "성공", "메시지가 성공적으로 전송되었습니다.");
+      ShowAlert("success", "성공", "배송지 수정이 완료되었습니다.");
     } catch (error) {
       ShowAlert(
         "error",
         "실패",
-        error.message || "메시지 전송에 실패했습니다."
+        error.message || "배송지 수정에 실패했습니다."
       );
     } finally {
       setIsSending(false);

@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import "./ReviewForm.css";
+import { ShowAlert, ShowLoading } from "../js/AlertUtils";
 import { useParams } from "react-router-dom";
 function ReviewForm() {
   const [reviewData, setReviewData] = useState({
     content: "", // 후기 텍스트
     img: null, // 이미지 파일
   });
+  const [isSending, setIsSending] = useState(false);
 
   const [imagePreview, setImagePreview] = useState(null); // 이미지 미리보기 상태
 
@@ -40,7 +42,7 @@ function ReviewForm() {
   // 폼 제출 핸들러
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    if (isSending) return;
     // FormData 객체를 사용하여 데이터 전송
     const formData = {
       applyId: applyId, // 신청 ID
@@ -50,6 +52,9 @@ function ReviewForm() {
     };
 
     try {
+      setIsSending(true);
+      ShowLoading("발송 중...");
+
       // 후기 등록에 대한 정확한 접근 필요
       const response = await fetch(`${API_BASE_URL}/reviews/${applyId}`, {
         method: "POST",
@@ -61,9 +66,11 @@ function ReviewForm() {
         throw new Error("서버 오류가 발생했습니다.");
       }
 
+      ShowAlert("success", "성공", "후기 작성이 완료되었습니다.");
       const result = await response.json();
       console.log("Success:", result);
     } catch (error) {
+      ShowAlert("error", "실패", error.message || "후기 작성에 실패했습니다.");
       console.error("Error:", error);
       // 에러 처리 (예: 사용자에게 알림 표시)
     }

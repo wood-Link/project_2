@@ -14,6 +14,7 @@ export function Share_link_form({ productInfo }) {
     userTel: "",
     street: "",
     address: "",
+    detailedAddress: "",
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
   // 모달 토글 함수
@@ -56,7 +57,8 @@ export function Share_link_form({ productInfo }) {
         workshop: productInfo.workshop,
         product: productInfo.name,
         productId: productInfo.productId,
-        address: userData.street + userData.address.trim(),
+        address: userData.street.trim(),
+        detailedAddress: userData.address.trim(),
         url: "www.naver.com",
       };
 
