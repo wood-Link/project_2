@@ -37,7 +37,33 @@ function ReviewForm() {
       };
       reader.readAsDataURL(file); // 파일을 base64로 변환
     }
-  };
+  }; // 카카오톡 인 앱 닫는 알림창
+  function ShowAlertEnd(icon, title, html, useTimer = true) {
+    const options = {
+      icon,
+      title,
+      html,
+      confirmButtonText: "확인",
+      customClass: {
+        confirmButton: "swal2-confirm",
+      },
+    };
+
+    if (useTimer) {
+      options.timer = 2000; // 2초 뒤 자동 닫힘
+    }
+
+    // Swal.fire() 호출 및 Promise 반환
+    return Swal.fire(options).then((result) => {
+      if (result.isConfirmed) {
+        // 확인 버튼을 눌렀을 때 실행할 동작
+        location.href = "kakaotalk://inappbrowser/close";
+      } else if (result.isDismissed) {
+        // 모달이 자동으로 닫혔거나, 사용자가 취소한 경우 실행할 동작
+        location.href = "kakaotalk://inappbrowser/close";
+      }
+    });
+  }
 
   // 폼 제출 핸들러
   const handleSubmit = async (e) => {
@@ -66,11 +92,15 @@ function ReviewForm() {
         throw new Error("서버 오류가 발생했습니다.");
       }
 
-      ShowAlert("success", "성공", "후기 작성이 완료되었습니다.");
+      ShowAlertEnd("success", "성공", "후기 작성이 완료되었습니다.");
       const result = await response.json();
       console.log("Success:", result);
     } catch (error) {
-      ShowAlert("error", "실패", error.message || "후기 작성에 실패했습니다.");
+      ShowAlertEnd(
+        "error",
+        "실패",
+        error.message || "후기 작성에 실패했습니다."
+      );
       console.error("Error:", error);
       // 에러 처리 (예: 사용자에게 알림 표시)
     }

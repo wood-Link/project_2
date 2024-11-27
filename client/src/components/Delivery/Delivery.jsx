@@ -35,7 +35,33 @@ const Delivery = () => {
       [name]: value,
     }));
   };
+  // 카카오톡 인 앱 닫는 알림창
+  function ShowAlertEnd(icon, title, html, useTimer = true) {
+    const options = {
+      icon,
+      title,
+      html,
+      confirmButtonText: "확인",
+      customClass: {
+        confirmButton: "swal2-confirm",
+      },
+    };
 
+    if (useTimer) {
+      options.timer = 2000; // 2초 뒤 자동 닫힘
+    }
+
+    // Swal.fire() 호출 및 Promise 반환
+    return Swal.fire(options).then((result) => {
+      if (result.isConfirmed) {
+        // 확인 버튼을 눌렀을 때 실행할 동작
+        location.href = "kakaotalk://inappbrowser/close";
+      } else if (result.isDismissed) {
+        // 모달이 자동으로 닫혔거나, 사용자가 취소한 경우 실행할 동작
+        location.href = "kakaotalk://inappbrowser/close";
+      }
+    });
+  }
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -102,9 +128,9 @@ const Delivery = () => {
         throw new Error("서버로 데이터를 전송하는 데 실패했습니다.");
 
       const result = await response.json();
-      ShowAlert("success", "성공", "배송지 수정이 완료되었습니다.");
+      ShowAlertEnd("success", "성공", "배송지 수정이 완료되었습니다.");
     } catch (error) {
-      ShowAlert(
+      ShowAlertEnd(
         "error",
         "실패",
         error.message || "배송지 수정에 실패했습니다."
