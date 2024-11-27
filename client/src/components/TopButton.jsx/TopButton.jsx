@@ -38,7 +38,7 @@ const TopButton = () => {
         style={{
           position: "fixed",
           bottom: "60px" /* 화면 아래 60px */,
-          right: "100px" /* 화면 오른쪽 100px */,
+          right: "10px" /* 화면 오른쪽 100px */,
           backgroundColor: "#007bff" /* 파란색 배경 */,
           color: "white" /* 텍스트 색상 */,
           border: "none" /* 테두리 없음 */,
