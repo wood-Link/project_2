@@ -64,22 +64,14 @@ export function Share_link_card({ category, productId }) {
           ? product.img.map((image, index) => (
               <SwiperSlide key={index}>
                 <div className="shareTabImg">
-                  <img
-                    src={images[`${image}.jpg`]}
-                    alt={image ? `${image}` : "이미지 없음"}
-                    className="product_image"
-                  />
+                  <img src={images[`${image}.jpg`]} alt={image ? `${image}` : "이미지 없음"} className="product_image" />
                 </div>
               </SwiperSlide>
             ))
           : skeleton.map((data) => (
               <SwiperSlide key={data}>
                 <div className="shareTabImg">
-                  <Skeleton
-                    width={"100%"}
-                    height={"100%"}
-                    baseColor="#f7e1c7"
-                  />
+                  <Skeleton width={"100%"} height={"100%"} baseColor="#f7e1c7" />
                 </div>
               </SwiperSlide>
             ))}
@@ -88,20 +80,15 @@ export function Share_link_card({ category, productId }) {
       <div className="shareTabExplain">
         <strong className="textTitle">
           <p className="textTitlePaddig">
-            {product?.workshop || "데이터 없음"} /{" "}
-            {product?.name || "데이터 없음"}
+            {product?.workshop || "데이터 없음"} / {product?.name || "데이터 없음"}
           </p>
         </strong>
         <li className="subTextTitle">
-          원가 : {product?.cost || "데이터 없음"} / 나눔가격 :{" "}
-          {product?.price || "데이터 없음"}
+          원가 : {product?.cost || "데이터 없음"} / 나눔가격 : {product?.price || "데이터 없음"}
         </li>
+        <li className="subTextTitle">- 나눔사유 : {product?.reason || "데이터 없음"}</li>
         <li className="subTextTitle">
-          - 나눔사유 : {product?.reason || "데이터 없음"}
-        </li>
-        <li className="subTextTitle">
-          -{product?.size?.[0] || 0} <span>*</span> {product?.size?.[1] || 0}{" "}
-          <span>*</span> {product?.size?.[2] || 0} (가로/세로/높이 단위:mm)
+          -{product?.size?.[0] || 0} <span>*</span> {product?.size?.[1] || 0} <span>*</span> {product?.size?.[2] || 0} (가로/세로/높이 단위:mm)
         </li>
       </div>
     </div>
