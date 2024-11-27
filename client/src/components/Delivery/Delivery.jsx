@@ -48,10 +48,6 @@ const Delivery = () => {
       },
     };
 
-    if (useTimer) {
-      options.timer = 2000; // 2초 뒤 자동 닫힘
-    }
-
     // Swal.fire() 호출 및 Promise 반환
     return Swal.fire(options).then((result) => {
       if (result.isConfirmed) {
