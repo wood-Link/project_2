@@ -42,7 +42,7 @@ const TopButton = () => {
           backgroundColor: "#007bff" /* 파란색 배경 */,
           color: "white" /* 텍스트 색상 */,
           border: "none" /* 테두리 없음 */,
-          borderRadius: "5px" /* 둥근 모서리 */,
+          borderRadius: "30px" /* 둥글게 */,
           padding: "10px 20px" /* 버튼 크기 */,
           fontSize: "16px",
           cursor: "pointer" /* 마우스 커서 모양 변경 */,

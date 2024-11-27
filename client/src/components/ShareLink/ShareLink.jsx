@@ -11,7 +11,7 @@ import "./ShareLink.css";
 import images from "../js/images.js";
 import { swiperConfig } from "../js/swiperConfig.js";
 const API_BASE_URL = import.meta.env.VITE_APP_API_BASE_URL;
-console.log(API_BASE_URL);
+
 function ShareLink() {
   const [category, setCategory] = useState("desk");
   const [products, setProducts] = useState([]);
@@ -36,7 +36,6 @@ function ShareLink() {
           headers: { "Content-Type": "application/json" },
         });
         const result = await response.json();
-
         setProducts(result);
         setIsLoading(false);
       } catch (error) {
@@ -63,7 +62,6 @@ function ShareLink() {
         behavior: "smooth",
         block: "start",
       });
-      console.log(selectedProductId);
     }
   }, [selectedProductId]);
 
@@ -93,9 +91,27 @@ function ShareLink() {
     });
   }
 
+  // 슬라이드 멈추기 및 시작하기 함수
+  const handleAutoplay = () => {
+    if (selectedProductId) {
+      swiperRef.current.swiper.autoplay.stop();
+    } else {
+      swiperRef.current.swiper.autoplay.start();
+    }
+  };
+
+  // 마우스가 슬라이드 영역에 들어가면 슬라이드 멈추기
+  const handleMouseEnter = () => {
+    swiperRef.current.swiper.autoplay.stop();
+  };
+
+  // 마우스가 슬라이드 영역을 떠나면 슬라이드 다시 시작
+  const handleMouseLeave = () => {
+    handleAutoplay();
+  };
+
   return (
     <main className="ShareLinkBoxMom">
-      {/* 페이지 상단 참조를 위한 div */}
       <div ref={topRef} />
 
       <div className="ShareLinkBox" id="ShareLinkBox">
@@ -119,7 +135,11 @@ function ShareLink() {
         </section>
 
         <section className="ShareLinkList">
-          <Swiper {...swiperConfig} ref={swiperRef}>
+          <Swiper
+            {...swiperConfig}
+            ref={swiperRef}
+            onSwiper={handleAutoplay} // swiper가 초기화된 후 autoplay 설정
+          >
             {isLoading === false
               ? products.map((data) => (
                   <SwiperSlide
@@ -150,8 +170,6 @@ function ShareLink() {
                 ))}
           </Swiper>
         </section>
-
-        {/* 선택된 제품에 대해 카드 렌더링 */}
 
         {selectedProductId && (
           <div ref={shareLinkTabRef}>
