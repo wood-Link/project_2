@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import "./ReviewForm.css";
+import { useParams } from "react-router-dom";
 function ReviewForm() {
   const [reviewData, setReviewData] = useState({
-    user: "673e9c5d3c176d103a4ed9b4", // 예시 user ID
-    product: "673e9c5d3c176d103a4ed9b4", // 예시 product ID
     content: "", // 후기 텍스트
     img: null, // 이미지 파일
   });
 
   const [imagePreview, setImagePreview] = useState(null); // 이미지 미리보기 상태
+
+  const API_BASE_URL = import.meta.env.VITE_APP_API_BASE_URL;
+  const { applyId } = useParams(); //
 
   // 후기 텍스트 입력 핸들러
   const handleTextChange = (e) => {
@@ -41,16 +43,15 @@ function ReviewForm() {
 
     // FormData 객체를 사용하여 데이터 전송
     const formData = {
-      user: reviewData.user,
-      product: reviewData.product,
-      content: reviewData.content,
+      applyId: applyId, // 신청 ID
+      content: reviewData.content, // 작성 내용
       img: reviewData.img ? "review1" : "review2", // 더미 이미지 삽입
       //   img: reviewData.img ? `${reviewData.img}` : null,
     };
 
     try {
       // 후기 등록에 대한 정확한 접근 필요
-      const response = await fetch("https://example.com/api/reviews", {
+      const response = await fetch(`${API_BASE_URL}/reviews/${applyId}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringfy(formData),
