@@ -15,6 +15,7 @@ function Review_Card({ data }) {
           <div className="review_card_title">
             {data?.workshop || "내용 없음"} / {data?.product || "내용 없음"}
           </div>
+          <div className="review_card_line"></div>
           <div className="review_card_name">{data?.user || "내용 없음"}</div>
           <div className="review_card_review">
             {data?.content || "리뷰가 없습니다."}

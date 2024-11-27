@@ -17,6 +17,7 @@
   font-size: 35px;
   font-weight: bold;
   margin-bottom: 32px;
+  color: #8b634b;
 }
 
 .question_text {
@@ -124,5 +125,11 @@
 
   p {
     font-size: 15px;
+  }
+  .question_title {
+    font-size: 22px;
+  }
+  .question_text {
+    font-size: 18px;
   }
 }

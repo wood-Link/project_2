@@ -66,18 +66,6 @@ function ShareLink() {
     }
   }, [isLoading, selectedProductId]); // isLoading과 selectedProductId 값에 의존
 
-  // 마우스가 슬라이드 영역에 들어오면 슬라이드 멈추기
-  const handleMouseEnter = () => {
-    if (swiperRef.current && swiperRef.current.swiper) {
-      swiperRef.current.swiper.autoplay.stop();
-    }
-  };
-
-  // 마우스가 슬라이드 영역을 떠나면 슬라이드 재시작
-  const handleMouseLeave = () => {
-    handleAutoplay(); // selectedProductId 값에 맞춰 autoplay 처리
-  };
-
   // selectedProductId가 변경될 때마다 화면 이동
   useEffect(() => {
     if (selectedProductId && shareLinkTabRef.current) {
@@ -138,12 +126,7 @@ function ShareLink() {
         </section>
 
         <section className="ShareLinkList">
-          <Swiper
-            {...swiperConfig}
-            ref={swiperRef}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-          >
+          <Swiper {...swiperConfig} ref={swiperRef}>
             {isLoading === false
               ? products.map((data) => (
                   <SwiperSlide
@@ -160,6 +143,16 @@ function ShareLink() {
                           : images[`${data.img[0]}.jpg`]
                       }
                       alt={data.name}
+                      onMouseEnter={() => {
+                        swiperRef.current.swiper.autoplay.stop();
+                        // console.log(swiperRef, "진입");
+                      }}
+                      onMouseLeave={() => {
+                        if (!selectedProductId) {
+                          swiperRef.current.swiper.autoplay.start();
+                        }
+                        // console.log(swiperRef, "이탈");
+                      }}
                     />
                   </SwiperSlide>
                 ))
