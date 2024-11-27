@@ -5,17 +5,7 @@
 [build.environment]
   NODE_VERSION = "20"
 
-[[redirects]]
-  from = "/Delivery/*"  # 클라이언트에서 /Delivery 경로로 들어오는 요청
-  to = "http://13.236.93.243:8001/api/Delivery/:splat"  # API 서버로 프록시
-  status = 200
-  force = true
 
-[[redirects]]
-  from = "/reviewForm/*"  # 클라이언트에서 /reviewForm 경로로 들어오는 요청
-  to = "http://13.236.93.243:8001/api/reviewForm/:splat"  # API 서버로 프록시
-  status = 200
-  force = true
 
 [[redirects]]
   from = "/api/*"  # 나머지 /api 경로 처리
