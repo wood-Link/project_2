@@ -209,7 +209,7 @@
 /* 모바일 버전 */
 @media (max-width: 436px) {
   .shareTab {
-    height: 450px;
+    height: auto;
   }
 
   .shareTabImg {
@@ -217,7 +217,7 @@
   }
 
   .shareTabExplain {
-    height: 110px;
+    height: auto;
   }
 
   .textTitle {
