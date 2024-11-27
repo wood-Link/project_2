@@ -130,3 +130,20 @@
     font-size: 1.3em;
   }
 }
+
+@media (max-width: 436px) {
+  .tegBox {
+    height: auto;
+  }
+
+  .container {
+    gap: 10px;
+    padding: 20px 0;
+  }
+
+  .item {
+    height: 50px;
+    font-size: 18px;
+    min-width: 110px;
+  }
+}
