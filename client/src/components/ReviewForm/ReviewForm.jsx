@@ -56,7 +56,7 @@ function ReviewForm() {
       ShowLoading("발송 중...");
 
       // 후기 등록에 대한 정확한 접근 필요
-      const response = await fetch(`${API_BASE_URL}/reviews/${applyId}`, {
+      const response = await fetch(`${API_BASE_URL}/review`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringfy(formData),
