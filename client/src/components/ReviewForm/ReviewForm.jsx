@@ -82,7 +82,7 @@ function ReviewForm() {
       const response = await fetch(`${API_BASE_URL}/review`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringfy(formData),
+        body: JSON.stringify(formData),
       });
 
       if (!response.ok) {
