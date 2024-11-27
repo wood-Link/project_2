@@ -2,6 +2,7 @@
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.05);
   border-radius: 10px;
   background-color: white;
+  min-height: 419px;
   height: auto;
   padding-bottom: 10px;
 }
