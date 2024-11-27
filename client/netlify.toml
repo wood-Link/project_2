@@ -22,6 +22,11 @@
   to = "http://13.236.93.243:8001/reviewForm/:splat"  # API 서버로 프록시
   status = 200
   force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
 [[headers]]
   for = "/*.js"
   [headers.values]
