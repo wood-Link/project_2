@@ -19,7 +19,6 @@ export function Share_link_form({ productInfo }) {
   // 모달 토글 함수
   const toggleModal = () => {
     setIsModalOpen((prev) => !prev);
-    console.log("modal");
   };
 
   const handleChange = (e) => {
@@ -34,17 +33,16 @@ export function Share_link_form({ productInfo }) {
     e.preventDefault();
 
     // 개인정보 동의 체크 확인
-
-    if (isSending) return;
-
-    if (!validateForm(userData)) return;
-
     if (!isPrivacyAgreed) {
       setShowPrivacyWarning(true);
       ShowAlert("warning", "알림", "개인정보 수집에 동의해주세요.");
       return;
     }
     setShowPrivacyWarning(false);
+
+    if (isSending) return;
+
+    if (!validateForm(userData)) return;
 
     try {
       setIsSending(true);
