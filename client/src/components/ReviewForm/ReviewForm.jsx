@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./ReviewForm.css";
+import { useParams } from "react-router-dom";
 function ReviewForm() {
   const [reviewData, setReviewData] = useState({
     user: "673e9c5d3c176d103a4ed9b4", // 예시 user ID
@@ -9,6 +10,8 @@ function ReviewForm() {
   });
 
   const [imagePreview, setImagePreview] = useState(null); // 이미지 미리보기 상태
+
+  const { deliveryId } = useParams(); //
 
   // 후기 텍스트 입력 핸들러
   const handleTextChange = (e) => {
@@ -41,9 +44,10 @@ function ReviewForm() {
 
     // FormData 객체를 사용하여 데이터 전송
     const formData = {
-      user: reviewData.user,
-      product: reviewData.product,
-      content: reviewData.content,
+      deliveryId: deliveryId, // 신청 ID
+      user: reviewData.user, // 유저 ID
+      product: reviewData.product, // 상품 ID
+      content: reviewData.content, // 작성 내용
       img: reviewData.img ? "review1" : "review2", // 더미 이미지 삽입
       //   img: reviewData.img ? `${reviewData.img}` : null,
     };

@@ -34,7 +34,7 @@ function App() {
         <Routes>
           <Route path="/" element={<WoodLink />} />
           <Route path="/Delivery/:id" element={<Delivery />} />
-          <Route path="/reviewForm/" element={<ReviewForm />} />
+          <Route path="/reviewForm/:deliveryId" element={<ReviewForm />} />
         </Routes>
       </Router>
     </>
