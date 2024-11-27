@@ -147,6 +147,9 @@
   justify-content: center;
   padding: 20px 0;
 }
+.pageButtonWrap img:hover {
+  cursor: pointer;
+}
 .ShareLinkTab {
   opacity: 0;
   transform: translateY(-10px);

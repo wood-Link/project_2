@@ -39,6 +39,12 @@
   object-fit: cover; /* 이미지를 잘라서 컨테이너를 완전히 채우게 */
   object-position: center; /* 이미지 중앙 정렬 */
   margin: 0 auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* 부드러운 효과 */
+}
+.shareImg:hover {
+  cursor: pointer;
+  transform: scale(1.05); /* 이미지 확대 */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* 그림자 추가 */
 }
 
 /* 탭 메뉴 스타일 */
