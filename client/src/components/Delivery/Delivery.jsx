@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { ShowAlert, ShowLoading } from "../js/AlertUtils";
+import Swal from "sweetalert2";
 import { MapPin, Phone, User, Search } from "lucide-react";
 import { validateForm } from "../js/validateForm";
 import "./Delivery.css";

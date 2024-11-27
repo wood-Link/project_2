@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./ReviewForm.css";
 import { ShowAlert, ShowLoading } from "../js/AlertUtils";
+import Swal from "sweetalert2";
 import { useParams } from "react-router-dom";
 function ReviewForm() {
   const [reviewData, setReviewData] = useState({
